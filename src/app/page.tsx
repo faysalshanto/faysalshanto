@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Newsletter from '@/components/Newsletter';
-import CorporateBackground from '@/components/CorporateBackground';
+import SceneCanvas from '@/components/SceneCanvas';
 import { Briefcase, Award, ExternalLink, MapPin, TrendingUp, Users, Calendar, Megaphone, ShieldCheck, HeartHandshake, Crown, Palette, Globe, Rocket, Terminal, Flag, CheckCircle2, Image as ImageIcon, ArrowUp, ArrowRight, Layers } from 'lucide-react';
 
 export default function Home() {
@@ -29,8 +29,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#060913] text-gray-100 font-sans selection:bg-blue-600 selection:text-white relative overflow-x-hidden">
 
-      {/* Always-Running International Corporate Background Animation */}
-      <CorporateBackground />
+      {/* Always-Running Three.js Liquidity & Node 3D Background */}
+      <SceneCanvas />
 
       {/* Permanently Fixed/Sticky Top Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-[#060913]/90 backdrop-blur-md border-b border-gray-800/60 shadow-lg">
@@ -79,7 +79,7 @@ export default function Home() {
               Hi, I'm <span className="bg-gradient-to-r from-blue-400 via-indigo-300 to-blue-500 bg-clip-text text-transparent">Faysal Ibne Safir</span> Shanto
             </h1>
             
-            {/* Title Line (Clean, Star Icon Removed as requested) */}
+            {/* Title Line (Clean, Star Icon Removed) */}
             <p className="text-blue-400 font-bold text-lg sm:text-xl md:text-2xl tracking-wide">
               Digital Marketer, Startup Founder & Student Leader
             </p>
