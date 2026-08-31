@@ -257,8 +257,12 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 
         {/* Author Bio Card */}
         <div className="bg-[#0d1322] border border-gray-800 p-8 rounded-3xl flex flex-col sm:flex-row items-center gap-6 mt-12 shadow-xl">
-          <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white font-extrabold text-2xl flex-shrink-0 shadow-[0_0_20px_rgba(37,99,235,0.4)]">
-            FS
+          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-blue-500/40 shadow-[0_0_20px_rgba(37,99,235,0.3)] flex-shrink-0">
+            <img
+              src="/faysal.jpg"
+              alt="Faysal Ibne Safir Shanto"
+              className="w-full h-full object-cover object-[center_top]"
+            />
           </div>
           <div className="space-y-2 text-center sm:text-left">
             <div className="flex flex-col sm:flex-row sm:items-center gap-2">
@@ -266,7 +270,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
               <span className="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2.5 py-0.5 rounded-full font-mono w-fit mx-auto sm:mx-0">Author & Founder</span>
             </div>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Digital Marketer, Founder at Maglyn, Sales Growth Partner at Flowmingo AI, and BBA Student at BUBT. Passionate about AI, Startups, and Building Communities.
+              Digital Marketer, Startup Founder & Student Leader. Founder at Maglyn, Sales Growth Partner at Flowmingo AI, and BBA Student at BUBT.
             </p>
             <div className="flex gap-4 pt-1 justify-center sm:justify-start text-xs text-blue-400 font-medium">
               <a href="https://www.linkedin.com/in/faysal-ibne-safir-shanto/" target="_blank" rel="noreferrer" className="hover:underline">LinkedIn</a>
