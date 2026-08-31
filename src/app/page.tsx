@@ -1,8 +1,16 @@
 'use client';
 
+import React from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import Newsletter from '@/components/Newsletter';
 import { Briefcase, Award, ExternalLink, MapPin, TrendingUp, Users, Calendar, Megaphone, ShieldCheck, HeartHandshake, Sparkles, Crown, Palette, Globe, Rocket, Terminal, Flag, CheckCircle2, Image as ImageIcon, ArrowUp } from 'lucide-react';
+import "@designcodeio/threeui/style.css";
+
+const SylvaHero = dynamic(
+  () => import('@designcodeio/threeui').then((mod) => mod.SylvaHero),
+  { ssr: false }
+) as any;
 
 export default function Home() {
   const posts = [
@@ -52,10 +60,27 @@ export default function Home() {
         </div>
       </nav>
 
+      {/* 3D SylvaHero Living Green Shader Container */}
+      <section className="w-full relative border-b border-gray-800/60">
+        <div className="shader-frame w-full h-screen relative overflow-hidden">
+          <SylvaHero
+            variant="living-green"
+            headingFont="lexend"
+            bodyFont="lexend"
+            headingWeight="300"
+            bodyWeight="300"
+            primaryColor="#ffffff"
+            headingSize={63}
+            bodySize={16.5}
+            headingLetterSpacing={-0.006}
+          />
+        </div>
+      </section>
+
       <main className="max-w-5xl mx-auto px-6 py-16 space-y-28">
 
-        {/* Hero Section */}
-        <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+        {/* Personal Intro Section */}
+        <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-12 pt-4">
           <div className="space-y-6 text-center md:text-left flex-1">
             <div className="space-y-2">
               <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
