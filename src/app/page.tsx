@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Newsletter from '@/components/Newsletter';
 import { Briefcase, Award, ExternalLink, MapPin, TrendingUp, Users, Calendar, Megaphone, ShieldCheck, HeartHandshake, Sparkles, Crown, Palette, Globe, Rocket, Terminal, Flag, CheckCircle2, Image as ImageIcon, ArrowUp } from 'lucide-react';
 
 export default function Home() {
@@ -457,6 +458,9 @@ export default function Home() {
         </section>
 
       </main>
+
+      {/* Newsletter Section */}
+      <Newsletter />
 
       {/* Floating Smooth Animated Scroll to Top Button */}
       <button onClick={scrollToTop} className="fixed bottom-6 right-6 p-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl shadow-[0_0_20px_rgba(37,99,235,0.4)] transition z-50 flex items-center justify-center group cursor-pointer" aria-label="Scroll to top">
