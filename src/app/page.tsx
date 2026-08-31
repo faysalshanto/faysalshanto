@@ -190,7 +190,7 @@ export default function Home() {
 
       {/* Prominent Maglyn Magazine Product Showcase Section */}
       <section className="bg-gradient-to-b from-[#060913] via-[#0d1322]/80 to-[#060913] py-16 px-6 border-b border-gray-800/60">
-        <div className="max-w-5xl mx-auto space-y-8">
+        <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center space-y-2">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-mono uppercase tracking-widest">
               <Layers size={14} /> Featured Startup Showcase
@@ -201,34 +201,53 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center pt-4">
-            <div className="aspect-[4/3] bg-gray-900 border-2 border-blue-500/40 rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(37,99,235,0.25)] group relative hover:border-blue-400 transition duration-500">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center pt-4">
+            
+            {/* Card 1: Maglyn Signature Issue */}
+            <div className="aspect-[4/5] bg-gray-900 border-2 border-blue-500/40 rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(37,99,235,0.25)] group relative hover:border-blue-400 transition duration-500">
               <img
-                src="/maglyn-1.jpg"
-                alt="Maglyn Magazine Cover Showcase"
-                className="w-full h-full object-cover object-[center_top] group-hover:scale-105 transition-transform duration-700"
+                src="/maglyn-new-cover.png"
+                alt="Maglyn Signature Issue"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 flex justify-between items-end">
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5 flex justify-between items-end">
                 <div>
-                  <span className="text-xs font-mono text-blue-400 bg-blue-500/20 border border-blue-500/30 px-3 py-1 rounded-full">Custom Print Edition</span>
-                  <h4 className="text-lg font-bold text-white mt-1">Maglyn Signature Issue</h4>
+                  <span className="text-[11px] font-mono text-blue-400 bg-blue-500/20 border border-blue-500/30 px-2.5 py-0.5 rounded-full">Custom Print Edition</span>
+                  <h4 className="text-base font-bold text-white mt-1.5">Maglyn Signature Issue</h4>
                 </div>
               </div>
             </div>
 
-            <div className="aspect-[4/3] bg-gray-900 border-2 border-indigo-500/40 rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(99,102,241,0.25)] group relative hover:border-indigo-400 transition duration-500">
+            {/* Card 2: Maglyn Puspo Edition */}
+            <div className="aspect-[4/5] bg-gray-900 border-2 border-indigo-500/40 rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(99,102,241,0.25)] group relative hover:border-indigo-400 transition duration-500">
               <img
-                src="/maglyn-2.jpg"
-                alt="Maglyn Magazine Layout Showcase"
-                className="w-full h-full object-cover object-[center_top] group-hover:scale-105 transition-transform duration-700"
+                src="/maglyn-cover-puspo.png"
+                alt="Maglyn Puspo Edition"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 flex justify-between items-end">
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5 flex justify-between items-end">
                 <div>
-                  <span className="text-xs font-mono text-indigo-400 bg-indigo-500/20 border border-indigo-500/30 px-3 py-1 rounded-full">Personalized Keepsake</span>
-                  <h4 className="text-lg font-bold text-white mt-1">Maglyn Stories & Memories</h4>
+                  <span className="text-[11px] font-mono text-indigo-400 bg-indigo-500/20 border border-indigo-500/30 px-2.5 py-0.5 rounded-full">Special Edition</span>
+                  <h4 className="text-base font-bold text-white mt-1.5">Maglyn Puspo Edition</h4>
                 </div>
               </div>
             </div>
+
+            {/* Card 3: Maglyn Stories & Memories */}
+            <div className="aspect-[4/5] bg-gray-900 border-2 border-purple-500/40 rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(168,85,247,0.25)] group relative hover:border-purple-400 transition duration-500">
+              <img
+                src="/maglyn-2.jpg"
+                alt="Maglyn Stories & Memories"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5 flex justify-between items-end">
+                <div>
+                  <span className="text-[11px] font-mono text-purple-400 bg-purple-500/20 border border-purple-500/30 px-2.5 py-0.5 rounded-full">Personalized Keepsake</span>
+                  <h4 className="text-base font-bold text-white mt-1.5">Maglyn Stories & Memories</h4>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -398,19 +417,26 @@ export default function Home() {
                 </p>
 
                 {/* Maglyn Work / Product Photos */}
-                <div className="grid grid-cols-2 gap-3 pt-2">
+                <div className="grid grid-cols-3 gap-2.5 pt-2">
                   <div className="aspect-square bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden group-hover:border-blue-500/50 transition">
                     <img
-                      src="/maglyn-1.jpg"
-                      alt="Maglyn Product 1"
-                      className="w-full h-full object-cover object-[center_top]"
+                      src="/maglyn-new-cover.png"
+                      alt="Maglyn Signature Issue"
+                      className="w-full h-full object-cover object-top"
                     />
                   </div>
-                  <div className="aspect-square bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden group-hover:border-blue-500/50 transition">
+                  <div className="aspect-square bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden group-hover:border-indigo-500/50 transition">
+                    <img
+                      src="/maglyn-cover-puspo.png"
+                      alt="Maglyn Puspo Edition"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  <div className="aspect-square bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden group-hover:border-purple-500/50 transition">
                     <img
                       src="/maglyn-2.jpg"
-                      alt="Maglyn Product 2"
-                      className="w-full h-full object-cover object-[center_top]"
+                      alt="Maglyn Stories & Memories"
+                      className="w-full h-full object-cover object-top"
                     />
                   </div>
                 </div>
