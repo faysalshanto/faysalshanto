@@ -13,14 +13,6 @@ export default function BlogIndex() {
       excerpt: "Why startups, innovation, and digital platforms could turn Bangladesh's everyday problems into global businesses.",
       category: "Startups",
       slug: "bangladesh-next-economic-opportunity"
-    },
-    {
-      id: 2,
-      title: "How Automation is Shaping the Future of Marketing",
-      date: "September 02, 2026",
-      excerpt: "Exploring the intersection of AI tools and authentic community building for modern brands.",
-      category: "Marketing",
-      slug: "automation-shaping-future-marketing"
     }
   ];
 
