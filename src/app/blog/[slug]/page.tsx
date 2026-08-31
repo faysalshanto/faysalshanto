@@ -69,10 +69,10 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
       {/* Permanently Fixed Top Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-[#060913]/90 backdrop-blur-md border-b border-gray-800/60 shadow-lg">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 bg-blue-600 rounded-full shadow-[0_0_12px_#2563eb]"></span>
-            <Link href="/" className="font-bold text-xl tracking-wider text-white">Faysal</Link>
-          </div>
+          <Link href="/" className="flex items-center gap-2 group cursor-pointer">
+            <span className="w-3 h-3 bg-blue-600 rounded-full shadow-[0_0_12px_#2563eb] group-hover:scale-110 transition-transform"></span>
+            <span className="font-bold text-xl tracking-wider text-white font-sans group-hover:text-blue-400 transition-colors">Faysal</span>
+          </Link>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
             <Link href="/" className="hover:text-white transition">Home</Link>
             <Link href="/#about" className="hover:text-white transition">About</Link>
