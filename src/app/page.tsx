@@ -3,7 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import Newsletter from '@/components/Newsletter';
-import { Briefcase, Award, ExternalLink, MapPin, TrendingUp, Users, Calendar, Megaphone, ShieldCheck, HeartHandshake, Sparkles, Crown, Palette, Globe, Rocket, Terminal, Flag, CheckCircle2, Image as ImageIcon, ArrowUp, ArrowRight, Layers } from 'lucide-react';
+import CorporateBackground from '@/components/CorporateBackground';
+import { Briefcase, Award, ExternalLink, MapPin, TrendingUp, Users, Calendar, Megaphone, ShieldCheck, HeartHandshake, Crown, Palette, Globe, Rocket, Terminal, Flag, CheckCircle2, Image as ImageIcon, ArrowUp, ArrowRight, Layers } from 'lucide-react';
 
 export default function Home() {
   const posts = [
@@ -27,6 +28,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#060913] text-gray-100 font-sans selection:bg-blue-600 selection:text-white relative overflow-x-hidden">
+
+      {/* Always-Running International Corporate Background Animation */}
+      <CorporateBackground />
 
       {/* Permanently Fixed/Sticky Top Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-[#060913]/90 backdrop-blur-md border-b border-gray-800/60 shadow-lg">
@@ -53,8 +57,8 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Clean, Fast, Professional Dark-Blue Hero Section (No Heavy 3D Shaders) */}
-      <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 px-6 max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 overflow-hidden border-b border-gray-800/60">
+      {/* Hero Section */}
+      <section className="relative z-10 pt-28 pb-20 md:pt-36 md:pb-28 px-6 max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 border-b border-gray-800/60">
         
         {/* Subtle Ambient Glowing Orbs */}
         <div className="absolute top-10 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
@@ -74,8 +78,10 @@ export default function Home() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
               Hi, I'm <span className="bg-gradient-to-r from-blue-400 via-indigo-300 to-blue-500 bg-clip-text text-transparent">Faysal Ibne Safir</span> Shanto
             </h1>
-            <p className="text-blue-400 font-bold text-lg sm:text-xl md:text-2xl tracking-wide flex items-center justify-center md:justify-start gap-2">
-              <Sparkles size={20} className="text-amber-400" /> Digital Marketer, Startup Founder & Student Leader
+            
+            {/* Title Line (Clean, Star Icon Removed as requested) */}
+            <p className="text-blue-400 font-bold text-lg sm:text-xl md:text-2xl tracking-wide">
+              Digital Marketer, Startup Founder & Student Leader
             </p>
           </div>
 
@@ -158,7 +164,7 @@ export default function Home() {
       </section>
 
       {/* Prominent 3-Card Maglyn Magazine Collection Showcase Section */}
-      <section className="bg-gradient-to-b from-[#060913] via-[#0d1322]/80 to-[#060913] py-16 px-6 border-b border-gray-800/60">
+      <section className="relative z-10 bg-gradient-to-b from-[#060913] via-[#0d1322]/80 to-[#060913] py-16 px-6 border-b border-gray-800/60">
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center space-y-2">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-mono uppercase tracking-widest">
@@ -221,8 +227,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Main Content Sections flowing cleanly one after another */}
-      <main className="max-w-5xl mx-auto px-6 py-16 space-y-28">
+      {/* Main Content Sections */}
+      <main className="relative z-10 max-w-5xl mx-auto px-6 py-16 space-y-28">
 
         {/* About Me Section */}
         <section id="about" className="space-y-6">
@@ -232,7 +238,7 @@ export default function Home() {
               <div className="w-[25%] h-0.5 bg-blue-600 mx-auto rounded-full shadow-[0_0_8px_#2563eb]"></div>
             </div>
           </div>
-          <div className="bg-[#0d1322] border border-gray-800/80 p-8 md:p-10 rounded-3xl shadow-lg space-y-4 text-gray-300 leading-relaxed text-sm md:text-base whitespace-pre-line text-center md:text-left">
+          <div className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800/80 p-8 md:p-10 rounded-3xl shadow-lg space-y-4 text-gray-300 leading-relaxed text-sm md:text-base whitespace-pre-line text-center md:text-left">
             <p>
               I am a Finance enthusiast and BBA student at Bangladesh University of Business and Technology (BUBT), passionate about financial analysis, corporate finance, investment, and business strategy. My goal is to build a career where analytical thinking, data-driven decision-making, and leadership create meaningful business impact.
             </p>
@@ -274,10 +280,10 @@ export default function Home() {
               { name: "Community Building", pct: "95%", icon: <Users size={22} className="text-purple-400" /> },
               { name: "Event Management", pct: "88%", icon: <Calendar size={22} className="text-blue-400" /> },
               { name: "Brand Positioning", pct: "85%", icon: <ShieldCheck size={22} className="text-emerald-400" /> },
-              { name: "AI Tools & Automation", pct: "75%", icon: <Sparkles size={22} className="text-amber-400" /> },
+              { name: "AI Tools & Automation", pct: "75%", icon: <Terminal size={22} className="text-amber-400" /> },
               { name: "Public Relations", pct: "82%", icon: <HeartHandshake size={22} className="text-cyan-400" /> }
             ].map((skill, i) => (
-              <div key={i} className="bg-[#0d1322] border border-gray-800 p-5 rounded-2xl flex flex-col justify-between hover:border-blue-500/50 transition">
+              <div key={i} className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-5 rounded-2xl flex flex-col justify-between hover:border-blue-500/50 transition">
                 <div className="flex justify-between items-start mb-4">
                   <div className="p-3 bg-gray-900 border border-gray-800 rounded-xl">
                     {skill.icon}
@@ -311,7 +317,7 @@ export default function Home() {
               { role: "Media & Marketing Coordinator", org: "BUBT Career Guidance Office", date: "Feb 2026 - Present", desc: "Handled media promotion, content creation, digital marketing, and promotional activities for office events.", icon: <Megaphone className="text-cyan-400" size={18} /> },
               { role: "Head of Marketing", org: "Global Pathway Hub", date: "2025 – 2026", desc: "Executed end-to-end digital marketing strategies driving student recruitment and brand growth.", icon: <Rocket className="text-emerald-400" size={18} /> }
             ].map((exp, i) => (
-              <div key={i} className="bg-[#0d1322] border border-gray-800 p-6 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-gray-700 transition">
+              <div key={i} className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-6 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-gray-700 transition">
                 <div className="flex items-start gap-4 flex-1">
                   <div className="p-3 bg-gray-900 border border-gray-800 rounded-xl mt-0.5 flex-shrink-0">
                     {exp.icon}
@@ -338,7 +344,7 @@ export default function Home() {
           </div>
           <div className="space-y-4">
             {[
-              { role: "Executive Member", org: "AI Community BUBT", date: "2025 – Present", desc: "Involved in BAIC 2025, AI-focused workshops, competitions, and community activities. Worked as part of the organizing team and was also a member of Team Elite, the Champion of the Pitch Battle.", icon: <Sparkles className="text-indigo-400" size={18} /> },
+              { role: "Executive Member", org: "AI Community BUBT", date: "2025 – Present", desc: "Involved in BAIC 2025, AI-focused workshops, competitions, and community activities. Worked as part of the organizing team and was also a member of Team Elite, the Champion of the Pitch Battle.", icon: <Globe className="text-indigo-400" size={18} /> },
               { role: "Executive", org: "Hult Prize at BUBT", date: "2025 – 2026", desc: "Involved in Hult Prize 2025–26, including entrepreneurship programs, team activities, campus events, and various program execution activities.", icon: <Crown className="text-amber-400" size={18} /> },
               { role: "Media & Publication Secretary", org: "BUBT Business Club (BUBTBC)", date: "2026 – Present", desc: "Involved in various business, career, networking, and student engagement events organized by the club, contributing to media, publication, and promotional activities.", icon: <Palette className="text-pink-400" size={18} /> },
               { role: "Volunteer", org: "BASIS Students’ Forum", date: "2025 – Present", desc: "Volunteered at the ICPC Asia Dhaka Regional Contest 2025 and participated in various technology-focused programs and student activities.", icon: <Terminal className="text-emerald-400" size={18} /> },
@@ -346,7 +352,7 @@ export default function Home() {
               { role: "Crew Facilitator", org: "Space Innovation Camp", date: "2026 – Present", desc: "Currently working as a Crew Facilitator at Space Innovation Camp, involved in participant management, crew coordination, activity facilitation, and overall event execution.", icon: <Globe className="text-purple-400" size={18} /> },
               { role: "Cadet Sergeant", org: "Bangladesh National Cadet Corps (BNCC)", date: "2023 – 2024", desc: "Served during 2023–2024, participating in regular military-style training, drills, leadership activities, discipline development, and team-based cadet programs.", icon: <Flag className="text-amber-500" size={18} /> }
             ].map((lead, i) => (
-              <div key={i} className="bg-[#0d1322] border border-gray-800 p-6 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-gray-700 transition">
+              <div key={i} className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-6 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-gray-700 transition">
                 <div className="flex items-start gap-4 flex-1">
                   <div className="p-3 bg-gray-900 border border-gray-800 rounded-xl mt-0.5 flex-shrink-0">
                     {lead.icon}
@@ -376,7 +382,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
             {/* Startup Card: Maglyn */}
-            <div className="bg-[#0d1322] border-2 border-blue-500/40 p-8 rounded-3xl shadow-xl relative overflow-hidden flex flex-col justify-between group">
+            <div className="bg-[#0d1322]/90 backdrop-blur-sm border-2 border-blue-500/40 p-8 rounded-3xl shadow-xl relative overflow-hidden flex flex-col justify-between group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
               <div className="space-y-4">
                 <span className="text-[10px] font-extrabold uppercase tracking-widest bg-blue-500/20 text-blue-400 border border-blue-500/30 px-3 py-1 rounded-full inline-block">My Startup</span>
@@ -422,7 +428,7 @@ export default function Home() {
             </div>
 
             {/* Graphic Design & Creative Works Card */}
-            <div className="bg-[#0d1322] border border-gray-800 p-8 rounded-3xl shadow-xl flex flex-col justify-between space-y-6">
+            <div className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-8 rounded-3xl shadow-xl flex flex-col justify-between space-y-6">
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <div className="p-3 bg-pink-500/10 text-pink-400 rounded-2xl border border-pink-500/20"><Palette size={22} /></div>
@@ -468,21 +474,21 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-[#0d1322] border border-gray-800 p-6 rounded-2xl flex items-start gap-4">
+            <div className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-6 rounded-2xl flex items-start gap-4">
               <Award className="text-amber-400 mt-1" size={24} />
               <div>
                 <h4 className="font-bold text-white">Pitch Battle Champion</h4>
                 <p className="text-xs text-gray-400 mt-1">National pitch competition winner (Team Elite).</p>
               </div>
             </div>
-            <div className="bg-[#0d1322] border border-gray-800 p-6 rounded-2xl flex items-start gap-4">
+            <div className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-6 rounded-2xl flex items-start gap-4">
               <Award className="text-amber-400 mt-1" size={24} />
               <div>
                 <h4 className="font-bold text-white">2nd Runner Up</h4>
                 <p className="text-xs text-gray-400 mt-1">Ad Making Challenge, Tech Fusion Fest.</p>
               </div>
             </div>
-            <div className="bg-[#0d1322] border border-gray-800 p-6 rounded-2xl flex items-start gap-4">
+            <div className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-6 rounded-2xl flex items-start gap-4">
               <Award className="text-amber-400 mt-1" size={24} />
               <div>
                 <h4 className="font-bold text-white">Drill Champion & 2IC</h4>
@@ -505,7 +511,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {posts.map((post) => (
-              <Link href={`/blog/${post.slug}`} key={post.id} className="bg-[#0d1322] border border-gray-800 p-6 rounded-2xl hover:border-blue-500/50 transition group">
+              <Link href={`/blog/${post.slug}`} key={post.id} className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-6 rounded-2xl hover:border-blue-500/50 transition group">
                 <p className="text-xs text-blue-400 font-bold uppercase mb-2">{post.date} • {post.category}</p>
                 <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition">{post.title}</h3>
                 <p className="text-sm text-gray-400 mb-4 line-clamp-2">{post.excerpt}</p>
@@ -525,7 +531,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-[#0d1322] border border-gray-800 p-8 rounded-3xl space-y-6">
+            <div className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-8 rounded-3xl space-y-6">
               <h3 className="text-xl font-bold text-white">Send a Message</h3>
               <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); alert("Message sent successfully!"); }}>
                 <div className="grid grid-cols-2 gap-4">
@@ -540,7 +546,7 @@ export default function Home() {
               </form>
             </div>
 
-            <div className="bg-[#0d1322] border border-gray-800 p-8 rounded-3xl flex flex-col justify-between space-y-6">
+            <div className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-8 rounded-3xl flex flex-col justify-between space-y-6">
               <div className="space-y-2">
                 <h3 className="text-xl font-bold text-white flex items-center gap-2">
                   <MapPin className="text-blue-500" size={20} /> Location & Info
@@ -575,7 +581,7 @@ export default function Home() {
         <ArrowUp size={20} className="group-hover:-translate-y-0.5 transition-transform" />
       </button>
 
-      <footer className="bg-[#03050a] border-t border-gray-800/80 py-8 text-center text-sm text-gray-500 mt-20">
+      <footer className="relative z-10 bg-[#03050a] border-t border-gray-800/80 py-8 text-center text-sm text-gray-500 mt-20">
         <p>© 2026 Faysal Ibne Safir Shanto.</p>
       </footer>
     </div>
