@@ -8,8 +8,8 @@ import { Briefcase, Award, ExternalLink, MapPin, TrendingUp, Users, Calendar, Me
 import "@designcodeio/threeui/style.css";
 import "@/shaders/threeui.css";
 
-const SylvaHero = dynamic(
-  () => import('@designcodeio/threeui').then((mod) => mod.SylvaHero),
+const KageLandingPage = dynamic(
+  () => import('@designcodeio/threeui').then((mod) => mod.KageLandingPage),
   { ssr: false }
 ) as any;
 
@@ -64,16 +64,15 @@ export default function Home() {
       {/* 3D Interactive Shader Hero Section */}
       <section className="w-full relative border-b border-gray-800/60">
         <div className="shader-frame w-full h-screen relative overflow-hidden">
-          <SylvaHero
-            variant="living-green"
-            headingFont="lexend"
-            bodyFont="lexend"
-            headingWeight="300"
+          <KageLandingPage
+            headingFont="onest"
+            bodyFont="onest"
+            headingWeight="400"
             bodyWeight="300"
-            primaryColor="#ffffff"
-            headingSize={63}
-            bodySize={16.5}
-            headingLetterSpacing={-0.006}
+            primaryColor="#e0231c"
+            headingSize={46}
+            bodySize={17}
+            headingLetterSpacing={-0.012}
           />
         </div>
       </section>
