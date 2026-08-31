@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Newsletter from '@/components/Newsletter';
+import SceneCanvas from '@/components/SceneCanvas';
 import { ArrowLeft, Calendar, Tag, Share2, Sparkles, CheckCircle2, Lightbulb, Rocket, Target, ShieldCheck, TrendingUp, Globe, BookOpen, Layers } from 'lucide-react';
 
 interface FrameworkStep {
@@ -60,10 +61,13 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
   ];
 
   return (
-    <div className="min-h-screen bg-[#060913] text-gray-100 font-sans selection:bg-blue-600 selection:text-white relative">
+    <div className="min-h-screen bg-[#060913] text-gray-100 font-sans selection:bg-blue-600 selection:text-white relative overflow-x-hidden">
       
-      {/* Top Navbar */}
-      <nav className="bg-[#060913]/90 backdrop-blur-md border-b border-gray-800/60 sticky top-0 z-50">
+      {/* Global 3D Background */}
+      <SceneCanvas />
+
+      {/* Permanently Fixed Top Navbar */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-[#060913]/90 backdrop-blur-md border-b border-gray-800/60 shadow-lg">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <span className="w-3 h-3 bg-blue-600 rounded-full shadow-[0_0_12px_#2563eb]"></span>
@@ -88,14 +92,14 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
       </nav>
 
       {/* Article Container */}
-      <main className="max-w-4xl mx-auto px-6 py-12 space-y-10">
+      <main className="relative z-10 max-w-4xl mx-auto px-6 pt-28 pb-12 space-y-10">
         
         {/* Back Link */}
         <div className="flex justify-between items-center">
           <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-blue-300 transition">
             <ArrowLeft size={16} /> Back to Blog
           </Link>
-          <span className="text-xs font-mono text-gray-400 bg-gray-900 border border-gray-800 px-3 py-1 rounded-full">
+          <span className="text-xs font-mono text-gray-400 bg-gray-900/90 border border-gray-800 px-3 py-1 rounded-full">
             6 Min Read
           </span>
         </div>
@@ -115,7 +119,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             Bangladesh's Next Economic Opportunity Is Hiding in Its Problems
           </h1>
 
-          <div className="bg-[#0d1322] border-l-4 border-blue-500 p-5 rounded-r-2xl border-y border-r border-gray-800/80">
+          <div className="bg-[#0d1322]/90 backdrop-blur-sm border-l-4 border-blue-500 p-5 rounded-r-2xl border-y border-r border-gray-800/80">
             <p className="text-gray-300 text-base md:text-lg leading-relaxed italic">
               "Every day in Bangladesh, millions of citizens navigate systemic friction—from fragmented SME supply chains to digital access gaps. Instead of viewing these as mere obstacles, the country's next era of economic growth lies in transforming these inefficiencies into high-impact, scalable business platforms."
             </p>
@@ -151,7 +155,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             <p>
               One of the most common reasons early-stage startups fail is building shiny technology in search of a problem. Innovation is not simply writing code or publishing an app on the Play Store; innovation is deeply understanding an existing real-world bottleneck and creating a reliable mechanism to solve it.
             </p>
-            <div className="bg-[#0d1322] border border-gray-800 p-6 rounded-2xl space-y-3">
+            <div className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-6 rounded-2xl space-y-3">
               <h3 className="font-bold text-white text-lg flex items-center gap-2">
                 <Target size={18} className="text-blue-400" /> The Problem-First Mindset:
               </h3>
@@ -184,7 +188,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {sectors.map((sec, idx) => (
-                <div key={idx} className="bg-[#0d1322] border border-gray-800 p-6 rounded-2xl hover:border-blue-500/40 transition">
+                <div key={idx} className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-6 rounded-2xl hover:border-blue-500/40 transition">
                   <div className="text-3xl mb-3">{sec.icon}</div>
                   <h3 className="text-lg font-bold text-white mb-2">{sec.name}</h3>
                   <ul className="space-y-1.5 text-xs text-gray-400">
@@ -212,7 +216,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {frameworkSteps.map((item) => (
-                <div key={item.step} className="bg-[#0d1322] border border-gray-800 p-5 rounded-2xl space-y-2 relative group hover:border-blue-500/50 transition">
+                <div key={item.step} className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-5 rounded-2xl space-y-2 relative group hover:border-blue-500/50 transition">
                   <div className="flex justify-between items-center">
                     <span className="text-xs font-mono font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2.5 py-0.5 rounded-full">
                       Step {item.step}
@@ -255,9 +259,9 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 
         </article>
 
-        {/* Author Bio Card */}
-        <div className="bg-[#0d1322] border border-gray-800 p-8 rounded-3xl flex flex-col sm:flex-row items-center gap-6 mt-12 shadow-xl">
-          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-blue-500/40 shadow-[0_0_20px_rgba(37,99,235,0.3)] flex-shrink-0">
+        {/* Author Bio Card (Updated with /faysal.jpg) */}
+        <div className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-8 rounded-3xl flex flex-col sm:flex-row items-center gap-6 mt-12 shadow-xl">
+          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-blue-500/50 shadow-[0_0_20px_rgba(37,99,235,0.3)] flex-shrink-0">
             <img
               src="/faysal.jpg"
               alt="Faysal Ibne Safir Shanto"
@@ -288,7 +292,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
       <Newsletter />
 
       {/* Footer */}
-      <footer className="bg-[#03050a] border-t border-gray-800/80 py-8 text-center text-sm text-gray-500">
+      <footer className="relative z-10 bg-[#03050a] border-t border-gray-800/80 py-8 text-center text-sm text-gray-500">
         <p>© 2026 Faysal Ibne Safir Shanto.</p>
       </footer>
     </div>

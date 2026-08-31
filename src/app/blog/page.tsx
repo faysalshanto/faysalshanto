@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Newsletter from '@/components/Newsletter';
+import SceneCanvas from '@/components/SceneCanvas';
 import { ArrowRight } from 'lucide-react';
 
 export default function BlogIndex() {
@@ -17,10 +18,13 @@ export default function BlogIndex() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#060913] text-gray-100 font-sans selection:bg-blue-600 selection:text-white relative">
+    <div className="min-h-screen bg-[#060913] text-gray-100 font-sans selection:bg-blue-600 selection:text-white relative overflow-x-hidden">
       
-      {/* Top Navbar */}
-      <nav className="bg-[#060913]/90 backdrop-blur-md border-b border-gray-800/60 sticky top-0 z-50">
+      {/* Global 3D Background */}
+      <SceneCanvas />
+
+      {/* Permanently Fixed Top Navbar */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-[#060913]/90 backdrop-blur-md border-b border-gray-800/60 shadow-lg">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <span className="w-3 h-3 bg-blue-600 rounded-full shadow-[0_0_12px_#2563eb]"></span>
@@ -45,7 +49,7 @@ export default function BlogIndex() {
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-6 py-16 space-y-12">
+      <main className="relative z-10 max-w-4xl mx-auto px-6 pt-28 pb-16 space-y-12">
         <header className="text-center space-y-4">
           <div className="inline-flex flex-col items-center">
             <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-2">Blog & Insights</h1>
@@ -58,7 +62,7 @@ export default function BlogIndex() {
 
         <div className="grid grid-cols-1 gap-8 pt-4">
           {posts.map((post) => (
-            <article key={post.id} className="bg-[#0d1322] border border-gray-800 p-8 rounded-3xl shadow-xl hover:border-blue-500/50 transition group flex flex-col justify-between gap-6">
+            <article key={post.id} className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-8 rounded-3xl shadow-xl hover:border-blue-500/50 transition group flex flex-col justify-between gap-6">
               <div className="space-y-4">
                 <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider">
                   <span className="text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full">{post.category}</span>
@@ -83,7 +87,7 @@ export default function BlogIndex() {
       <Newsletter />
 
       {/* Footer */}
-      <footer className="bg-[#03050a] border-t border-gray-800/80 py-8 text-center text-sm text-gray-500">
+      <footer className="relative z-10 bg-[#03050a] border-t border-gray-800/80 py-8 text-center text-sm text-gray-500">
         <p>© 2026 Faysal Ibne Safir Shanto.</p>
       </footer>
     </div>
