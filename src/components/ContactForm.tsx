@@ -27,7 +27,7 @@ export function ContactForm() {
     setErrorMessage(null);
 
     const fullName = `${formData.firstName} ${formData.lastName}`.trim();
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || '34828451-c749-4c08-ae14-3a611387235f';
 
     try {
       let isSuccess = false;

@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     const fullName = (name || `${firstName || ''} ${lastName || ''}`).trim() || 'Portfolio Visitor';
     
     // Check environment variables for Web3Forms or Formspree
-    const web3Key = process.env.WEB3FORMS_ACCESS_KEY || process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+    const web3Key = process.env.WEB3FORMS_ACCESS_KEY || process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || '34828451-c749-4c08-ae14-3a611387235f';
     const formspreeUrl = process.env.FORMSPREE_URL || process.env.NEXT_PUBLIC_FORMSPREE_URL;
 
     // 1. Web3Forms Submission
