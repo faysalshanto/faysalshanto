@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Newsletter from '@/components/Newsletter';
 import SceneCanvas from '@/components/SceneCanvas';
+import { ContactForm } from '@/components/ContactForm';
 import { Briefcase, Award, ExternalLink, MapPin, TrendingUp, Users, Calendar, Megaphone, ShieldCheck, HeartHandshake, Crown, Palette, Globe, Rocket, Terminal, Flag, CheckCircle2, Image as ImageIcon, ArrowUp, ArrowRight, Layers } from 'lucide-react';
 
 export default function Home() {
@@ -512,17 +513,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-8 rounded-3xl space-y-6">
               <h3 className="text-xl font-bold text-white">Send a Message</h3>
-              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); alert("Message sent successfully!"); }}>
-                <div className="grid grid-cols-2 gap-4">
-                  <input type="text" placeholder="First Name" className="w-full px-4 py-3 bg-[#060913] border border-gray-800 rounded-xl text-sm text-gray-200 focus:outline-none focus:border-blue-500" required />
-                  <input type="text" placeholder="Last Name" className="w-full px-4 py-3 bg-[#060913] border border-gray-800 rounded-xl text-sm text-gray-200 focus:outline-none focus:border-blue-500" required />
-                </div>
-                <input type="email" placeholder="Email Address" className="w-full px-4 py-3 bg-[#060913] border border-gray-800 rounded-xl text-sm text-gray-200 focus:outline-none focus:border-blue-500" required />
-                <textarea placeholder="Your Message" rows={4} className="w-full px-4 py-3 bg-[#060913] border border-gray-800 rounded-xl text-sm text-gray-200 focus:outline-none focus:border-blue-500" required></textarea>
-                <button type="submit" className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition text-sm shadow-[0_0_15px_rgba(37,99,235,0.3)] cursor-pointer">
-                  Submit Message 🚀
-                </button>
-              </form>
+              <ContactForm />
             </div>
 
             <div className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-8 rounded-3xl flex flex-col justify-between space-y-6">
