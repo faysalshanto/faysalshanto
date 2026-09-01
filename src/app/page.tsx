@@ -40,7 +40,7 @@ export default function Home() {
             <span className="font-bold text-xl tracking-wider text-white font-sans group-hover:text-blue-400 transition-colors">Faysal</span>
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-            <Link href="/" className="hover:text-white transition">Home</Link>
+            <Link href="#home" className="hover:text-white transition">Home</Link>
             <Link href="#about" className="hover:text-white transition">About</Link>
             <Link href="#skills" className="hover:text-white transition">Skills</Link>
             <Link href="#experience" className="hover:text-white transition">Experience</Link>
