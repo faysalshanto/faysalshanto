@@ -1,7 +1,89 @@
 "use client"
-import { Mail, Briefcase, Store, Send } from 'lucide-react';
+
+import React, { useState } from 'react';
+import { Mail, Briefcase, Store, Send, CheckCircle2, AlertCircle, Loader2, RefreshCw } from 'lucide-react';
 
 export default function Sidebar() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!email || !email.includes('@')) return;
+
+    setStatus('loading');
+    setErrorMessage(null);
+
+    try {
+      let isSuccess = false;
+      let errorMsg = 'Failed to subscribe. Please try again.';
+
+      try {
+        const res = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          isSuccess = true;
+        } else if (data.message) {
+          errorMsg = data.message;
+        }
+      } catch {
+        // Fallback to direct Web3Forms endpoint
+      }
+
+      if (!isSuccess) {
+        const accessKey =
+          process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+          '34828451-c749-4c08-ae14-3a611387235f';
+
+        const web3Res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            access_key: accessKey,
+            email,
+            subject: `New Newsletter Subscriber (Sidebar): ${email}`,
+            from_name: 'Faysal Portfolio Newsletter',
+            message: `New subscriber email: ${email}`,
+            form_name: 'Newsletter Subscription',
+            to_email: 'faysal.shanto.official@gmail.com',
+          }),
+        });
+
+        const web3Data = await web3Res.json();
+        if (web3Res.ok && web3Data.success) {
+          isSuccess = true;
+        } else if (web3Data.message) {
+          errorMsg = web3Data.message;
+        }
+      }
+
+      if (isSuccess) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+        setErrorMessage(errorMsg);
+      }
+    } catch (err: any) {
+      console.error('Sidebar newsletter error:', err);
+      setStatus('error');
+      setErrorMessage('Network error. Please try again.');
+    }
+  };
+
+  const handleReset = () => {
+    setStatus('idle');
+    setEmail('');
+    setErrorMessage(null);
+  };
+
   return (
     <aside className="w-full md:w-80 flex-shrink-0 space-y-6">
       
@@ -59,20 +141,52 @@ export default function Sidebar() {
         <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
           Subscribe to get my latest blog posts, startup insights, and valuable resources straight to your inbox.
         </p>
-        <form className="flex flex-col gap-3" onSubmit={(e) => { e.preventDefault(); alert("Thanks for subscribing! Backend integration coming soon."); }}>
-          <input 
-            type="email" 
-            placeholder="Your email address" 
-            className="w-full px-3 py-2.5 text-sm border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" 
-            required 
-          />
-          <button 
-            type="submit" 
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-lg transition text-sm"
-          >
-            Subscribe Now
-          </button>
-        </form>
+
+        {status === 'success' ? (
+          <div className="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-center space-y-2 animate-in fade-in duration-200">
+            <CheckCircle2 size={24} className="text-emerald-500 mx-auto" />
+            <p className="text-xs font-bold text-gray-900 dark:text-emerald-300">Subscribed Successfully!</p>
+            <p className="text-[11px] text-gray-600 dark:text-gray-300">Thank you for subscribing to updates.</p>
+            <button
+              onClick={handleReset}
+              className="inline-flex items-center gap-1 text-[11px] text-blue-600 dark:text-blue-400 hover:underline font-semibold mt-1 cursor-pointer"
+            >
+              <RefreshCw size={11} /> Subscribe another
+            </button>
+          </div>
+        ) : (
+          <form className="flex flex-col gap-3" onSubmit={handleSubscribe}>
+            {status === 'error' && errorMessage && (
+              <div className="flex items-center gap-2 p-2.5 bg-red-500/10 border border-red-500/30 rounded-lg text-red-600 dark:text-red-400 text-xs">
+                <AlertCircle size={14} className="shrink-0" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
+            <input 
+              type="email" 
+              placeholder="Your email address" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={status === 'loading'}
+              className="w-full px-3 py-2.5 text-sm border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50" 
+              required 
+            />
+            <button 
+              type="submit" 
+              disabled={status === 'loading'}
+              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 text-white font-bold py-2.5 px-4 rounded-lg transition text-sm flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
+            >
+              {status === 'loading' ? (
+                <>
+                  <Loader2 size={14} className="animate-spin" />
+                  <span>Subscribing...</span>
+                </>
+              ) : (
+                <span>Subscribe Now</span>
+              )}
+            </button>
+          </form>
+        )}
       </div>
 
       {/* My Business Widget (Maglyn) */}

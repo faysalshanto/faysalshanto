@@ -14,6 +14,20 @@ export default function Header({ isHome = true }: HeaderProps) {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    closeMenu();
+    if (typeof window !== 'undefined') {
+      const isCurrentPathHome = window.location.pathname === '/';
+      if (isCurrentPathHome || isHome) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (window.location.hash) {
+          window.history.pushState(null, '', '/');
+        }
+      }
+    }
+  };
+
   const getHref = (anchor: string) => {
     if (anchor === '/blog') return '/blog';
     return isHome ? `#${anchor}` : `/#${anchor}`;
@@ -24,14 +38,14 @@ export default function Header({ isHome = true }: HeaderProps) {
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         
         {/* Brand Logo & Name */}
-        <Link href="/" onClick={closeMenu} className="flex items-center gap-2 group cursor-pointer">
+        <Link href="/" onClick={handleLogoClick} className="flex items-center gap-2 group cursor-pointer">
           <span className="w-3 h-3 bg-blue-600 rounded-full shadow-[0_0_12px_#2563eb] group-hover:scale-110 transition-transform"></span>
           <span className="font-bold text-xl tracking-wider text-white font-sans group-hover:text-blue-400 transition-colors">Faysal</span>
         </Link>
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-          <Link href={isHome ? "#home" : "/"} className="hover:text-white transition">Home</Link>
+          <Link href="/" onClick={handleLogoClick} className="hover:text-white transition">Home</Link>
           <Link href={getHref("about")} className="hover:text-white transition">About</Link>
           <Link href={getHref("skills")} className="hover:text-white transition">Skills</Link>
           <Link href={getHref("experience")} className="hover:text-white transition">Experience</Link>
@@ -75,8 +89,8 @@ export default function Header({ isHome = true }: HeaderProps) {
       {isOpen && (
         <div className="md:hidden bg-[#060913]/98 border-b border-gray-800/80 px-6 pt-3 pb-6 space-y-3 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-4 duration-200">
           <Link
-            href={isHome ? "#home" : "/"}
-            onClick={closeMenu}
+            href="/"
+            onClick={handleLogoClick}
             className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
           >
             Home
