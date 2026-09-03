@@ -44,19 +44,21 @@ export default function Header({ isHome = true }: HeaderProps) {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+        <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-400">
           <Link href="/" onClick={handleLogoClick} className="hover:text-white transition">Home</Link>
           <Link href={getHref("about")} className="hover:text-white transition">About</Link>
-          <Link href={getHref("skills")} className="hover:text-white transition">Skills</Link>
           <Link href={getHref("experience")} className="hover:text-white transition">Experience</Link>
           <Link href={getHref("leadership")} className="hover:text-white transition">Leadership</Link>
+          <Link href={getHref("volunteering")} className="hover:text-white transition">Volunteering</Link>
+          <Link href={getHref("courses")} className="hover:text-white transition">Courses</Link>
+          <Link href={getHref("gallery")} className="hover:text-white transition">Gallery</Link>
           <Link href={getHref("portfolio")} className="hover:text-white transition">Portfolio</Link>
           <Link href="/blog" className="hover:text-white transition">Blog</Link>
           <Link href={getHref("contact")} className="hover:text-white transition">Contact</Link>
         </div>
 
         {/* Desktop Hire Me Action Button */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <a
             href={getHref("contact")}
             className="bg-[#111827] hover:bg-blue-600 border border-gray-800 hover:border-blue-500 text-white px-5 py-2 rounded-full text-xs font-bold transition shadow-sm"
@@ -66,7 +68,7 @@ export default function Header({ isHome = true }: HeaderProps) {
         </div>
 
         {/* Mobile Hamburger Menu Toggle Button */}
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-3 lg:hidden">
           <a
             href={getHref("contact")}
             onClick={closeMenu}
@@ -87,7 +89,7 @@ export default function Header({ isHome = true }: HeaderProps) {
 
       {/* Mobile Dropdown Menu Container */}
       {isOpen && (
-        <div className="md:hidden bg-[#060913]/98 border-b border-gray-800/80 px-6 pt-3 pb-6 space-y-3 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="lg:hidden bg-[#060913]/98 border-b border-gray-800/80 px-6 pt-3 pb-6 space-y-3 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-4 duration-200">
           <Link
             href="/"
             onClick={handleLogoClick}
@@ -103,13 +105,6 @@ export default function Header({ isHome = true }: HeaderProps) {
             About
           </Link>
           <Link
-            href={getHref("skills")}
-            onClick={closeMenu}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
-          >
-            Skills
-          </Link>
-          <Link
             href={getHref("experience")}
             onClick={closeMenu}
             className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
@@ -122,6 +117,27 @@ export default function Header({ isHome = true }: HeaderProps) {
             className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
           >
             Leadership
+          </Link>
+          <Link
+            href={getHref("volunteering")}
+            onClick={closeMenu}
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+          >
+            Volunteering
+          </Link>
+          <Link
+            href={getHref("courses")}
+            onClick={closeMenu}
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+          >
+            Courses
+          </Link>
+          <Link
+            href={getHref("gallery")}
+            onClick={closeMenu}
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+          >
+            Gallery
           </Link>
           <Link
             href={getHref("portfolio")}

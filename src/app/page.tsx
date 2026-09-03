@@ -6,6 +6,10 @@ import Header from '@/components/Header';
 import Newsletter from '@/components/Newsletter';
 import SceneCanvas from '@/components/SceneCanvas';
 import { ContactForm } from '@/components/ContactForm';
+import BusinessClub from '@/components/BusinessClub';
+import VolunteeringLeadership from '@/components/VolunteeringLeadership';
+import Courses from '@/components/Courses';
+import Gallery from '@/components/Gallery';
 import { Briefcase, Award, ExternalLink, MapPin, TrendingUp, Users, Calendar, Megaphone, ShieldCheck, HeartHandshake, Crown, Palette, Globe, Rocket, Terminal, Flag, CheckCircle2, Image as ImageIcon, ArrowUp, ArrowRight, Layers } from 'lucide-react';
 
 export default function Home() {
@@ -319,20 +323,18 @@ export default function Home() {
           <div className="text-center">
             <div className="inline-flex flex-col items-center">
               <h2 className="text-2xl font-bold text-white mb-2">Leadership & Activities</h2>
-              <div className="w-[25%] h-0.5 bg-blue-600 mx-auto rounded-full shadow-[0_0_8px_#2563eb]"></div>
+              <div className="w-[25%] h-0.5 bg-blue-600 mx-auto rounded-full shadow-[0_0_8px_#2f5fb8]"></div>
             </div>
           </div>
           <div className="space-y-4">
             {[
-              { role: "Executive Member", org: "AI Community BUBT", date: "2025 – Present", desc: "Involved in BAIC 2025, AI-focused workshops, competitions, and community activities. Worked as part of the organizing team and was also a member of Team Elite, the Champion of the Pitch Battle.", icon: <Globe className="text-indigo-400" size={18} /> },
-              { role: "Executive", org: "Hult Prize at BUBT", date: "2025 – 2026", desc: "Involved in Hult Prize 2025–26, including entrepreneurship programs, team activities, campus events, and various program execution activities.", icon: <Crown className="text-amber-400" size={18} /> },
-              { role: "Media & Publication Secretary", org: "BUBT Business Club (BUBTBC)", date: "2026 – Present", desc: "Involved in various business, career, networking, and student engagement events organized by the club, contributing to media, publication, and promotional activities.", icon: <Palette className="text-pink-400" size={18} /> },
-              { role: "Volunteer", org: "BASIS Students’ Forum", date: "2025 – Present", desc: "Volunteered at the ICPC Asia Dhaka Regional Contest 2025 and participated in various technology-focused programs and student activities.", icon: <Terminal className="text-emerald-400" size={18} /> },
-              { role: "Treasurer", org: "Leo Club of Dhaka Century Plus", date: "2026 – Present", desc: "Currently involved in various community service, awareness, and social welfare initiatives, including a Women’s Reproductive Health & Infertility Awareness Seminar.", icon: <HeartHandshake className="text-red-400" size={18} /> },
-              { role: "Crew Facilitator", org: "Space Innovation Camp", date: "2026 – Present", desc: "Currently working as a Crew Facilitator at Space Innovation Camp, involved in participant management, crew coordination, activity facilitation, and overall event execution.", icon: <Globe className="text-purple-400" size={18} /> },
-              { role: "Cadet Sergeant", org: "Bangladesh National Cadet Corps (BNCC)", date: "2023 – 2024", desc: "Served during 2023–2024, participating in regular military-style training, drills, leadership activities, discipline development, and team-based cadet programs.", icon: <Flag className="text-amber-500" size={18} /> }
+              { role: "Executive Member", org: "AI Community BUBT", date: "2025 – Present", desc: "Involved in BAIC 2025, AI-focused workshops, competitions, and community activities. Worked as part of the organizing team and was also a member of Team Elite, the Champion of the Pitch Battle.", icon: <Globe className="text-indigo-400" size={18} />, postUrl: "https://www.facebook.com/faysal.ibne.safir.shanto" },
+              { role: "Executive", org: "Hult Prize at BUBT", date: "2025 – 2026", desc: "Involved in Hult Prize 2025–26, including entrepreneurship programs, team activities, campus events, and various program execution activities.", icon: <Crown className="text-amber-400" size={18} />, postUrl: "https://www.facebook.com/faysal.ibne.safir.shanto" },
+              { role: "Treasurer", org: "Leo Club of Dhaka Century Plus", date: "2026 – Present", desc: "Currently involved in various community service, awareness, and social welfare initiatives, including a Women’s Reproductive Health & Infertility Awareness Seminar.", icon: <HeartHandshake className="text-pink-400" size={18} />, postUrl: "https://www.facebook.com/faysal.ibne.safir.shanto" },
+              { role: "Crew Facilitator", org: "Space Innovation Camp", date: "2026 – Present", desc: "Currently working as a Crew Facilitator at Space Innovation Camp, involved in participant management, crew coordination, activity facilitation, and overall event execution.", icon: <Globe className="text-purple-400" size={18} />, postUrl: "https://www.facebook.com/faysal.ibne.safir.shanto" },
+              { role: "Cadet Sergeant", org: "Bangladesh National Cadet Corps (BNCC)", date: "2023 – 2024", desc: "Served during 2023–2024, participating in regular military-style training, drills, leadership activities, discipline development, and team-based cadet programs.", icon: <Flag className="text-amber-500" size={18} />, postUrl: "https://www.facebook.com/faysal.ibne.safir.shanto" }
             ].map((lead, i) => (
-              <div key={i} className="bg-[#0d1322]/90 backdrop-blur-sm border border-gray-800 p-6 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-gray-700 transition">
+              <div key={i} className="glass-panel glow-border p-6 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition">
                 <div className="flex items-start gap-4 flex-1">
                   <div className="p-3 bg-gray-900 border border-gray-800 rounded-xl mt-0.5 flex-shrink-0">
                     {lead.icon}
@@ -341,6 +343,16 @@ export default function Home() {
                     <h3 className="font-bold text-white text-base">{lead.role}</h3>
                     <p className="text-xs text-blue-400 font-semibold">{lead.org}</p>
                     <p className="text-xs text-gray-400 leading-relaxed">{lead.desc}</p>
+                    {lead.postUrl && (
+                      <a
+                        href={lead.postUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-blue-400 hover:text-blue-300 transition pt-1"
+                      >
+                        View Post ↗
+                      </a>
+                    )}
                   </div>
                 </div>
                 <span className="text-xs font-mono bg-gray-900 border border-gray-800 text-gray-400 px-3 py-1 rounded-lg whitespace-nowrap">{lead.date}</span>
@@ -348,6 +360,18 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* Dedicated BUBT Business Club Section */}
+        <BusinessClub />
+
+        {/* Volunteering & Community Service Section */}
+        <VolunteeringLeadership />
+
+        {/* Courses & Certifications Section (ICPC-First) */}
+        <Courses />
+
+        {/* Work Photo Gallery Section */}
+        <Gallery />
 
         {/* Featured Projects & Graphic Design Works */}
         <section id="portfolio" className="space-y-8">

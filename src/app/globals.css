@@ -4,7 +4,10 @@
   --font-sans: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   --font-display: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   --font-heading: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-  --color-brand-blue: #2563eb;
+  --color-brand-blue: #2f5fb8;
+  --color-accent-blue: #2f5fb8;
+  --color-accent-cyan: #8fb4e8;
+  --color-accent-deep: #1b3f8f;
 }
 
 html {
@@ -21,6 +24,26 @@ body {
 
 h1, h2, h3, h4, h5, h6, button, input, textarea, select, a {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+/* Glassmorphism Panel Standard Card */
+.glass-panel {
+  background-color: rgba(13, 19, 34, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+}
+
+/* Softened Fintech Glow Border Utility */
+.glow-border {
+  border: 1px solid rgba(47, 95, 184, 0.25);
+  box-shadow: 0 0 15px rgba(47, 95, 184, 0.08);
+  transition: all 0.3s ease-in-out;
+}
+
+.glow-border:hover {
+  border-color: rgba(143, 180, 232, 0.45);
+  box-shadow: 0 0 25px rgba(47, 95, 184, 0.14);
 }
 
 @keyframes heroRise {
