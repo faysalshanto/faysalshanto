@@ -6,10 +6,8 @@ import Header from '@/components/Header';
 import Newsletter from '@/components/Newsletter';
 import SceneCanvas from '@/components/SceneCanvas';
 import { ContactForm } from '@/components/ContactForm';
-import BusinessClub from '@/components/BusinessClub';
+import EcaShowcase from '@/components/EcaShowcase';
 import VolunteeringLeadership from '@/components/VolunteeringLeadership';
-import Courses from '@/components/Courses';
-import Gallery from '@/components/Gallery';
 import { Briefcase, Award, ExternalLink, MapPin, TrendingUp, Users, Calendar, Megaphone, ShieldCheck, HeartHandshake, Crown, Palette, Globe, Rocket, Terminal, Flag, CheckCircle2, Image as ImageIcon, ArrowUp, ArrowRight, Layers } from 'lucide-react';
 
 export default function Home() {
@@ -63,7 +61,7 @@ export default function Home() {
               Hi, I'm <span className="bg-gradient-to-r from-blue-400 via-indigo-300 to-blue-500 bg-clip-text text-transparent">Faysal Ibne Safir</span> Shanto
             </h1>
             
-            {/* Title Line (Clean, Star Icon Removed) */}
+            {/* Title Line */}
             <p className="text-blue-400 font-bold text-lg sm:text-xl md:text-2xl tracking-wide">
               Digital Marketer, Startup Founder & Student Leader
             </p>
@@ -119,9 +117,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Right Column: Profile Image with Glowing Blue Aura & Floating Badge */}
+        {/* Right Column: Profile Image */}
         <div className="relative flex justify-center items-center">
-          {/* Glowing Blue Aura Ring */}
           <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur-xl opacity-50 group-hover:opacity-80 transition duration-500"></div>
 
           <div className="w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-[#0d1322] rounded-3xl border-2 border-blue-500/50 shadow-[0_0_50px_rgba(37,99,235,0.3)] overflow-hidden relative group cursor-pointer transition-all duration-500 hover:border-blue-400 hover:shadow-[0_0_60px_rgba(37,99,235,0.6)]">
@@ -130,11 +127,9 @@ export default function Home() {
               alt="Faysal Ibne Safir Shanto"
               className="w-full h-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-105"
             />
-            {/* Subtle gradient overlay at bottom of photo */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#060913] via-transparent to-transparent opacity-60"></div>
           </div>
 
-          {/* Floating Pill Badge */}
           <div className="absolute -bottom-4 right-2 sm:right-6 bg-[#0d1322]/95 backdrop-blur-md border border-blue-500/40 px-4 py-2.5 rounded-2xl shadow-2xl flex items-center gap-2.5">
             <div className="p-1.5 bg-blue-600/20 rounded-xl text-blue-400">
               <Rocket size={16} />
@@ -328,11 +323,11 @@ export default function Home() {
           </div>
           <div className="space-y-4">
             {[
-              { role: "Executive Member", org: "AI Community BUBT", date: "2025 – Present", desc: "Involved in BAIC 2025, AI-focused workshops, competitions, and community activities. Worked as part of the organizing team and was also a member of Team Elite, the Champion of the Pitch Battle.", icon: <Globe className="text-indigo-400" size={18} />, postUrl: "https://www.facebook.com/faysal.ibne.safir.shanto" },
-              { role: "Executive", org: "Hult Prize at BUBT", date: "2025 – 2026", desc: "Involved in Hult Prize 2025–26, including entrepreneurship programs, team activities, campus events, and various program execution activities.", icon: <Crown className="text-amber-400" size={18} />, postUrl: "https://www.facebook.com/faysal.ibne.safir.shanto" },
-              { role: "Treasurer", org: "Leo Club of Dhaka Century Plus", date: "2026 – Present", desc: "Currently involved in various community service, awareness, and social welfare initiatives, including a Women’s Reproductive Health & Infertility Awareness Seminar.", icon: <HeartHandshake className="text-pink-400" size={18} />, postUrl: "https://www.facebook.com/faysal.ibne.safir.shanto" },
-              { role: "Crew Facilitator", org: "Space Innovation Camp", date: "2026 – Present", desc: "Currently working as a Crew Facilitator at Space Innovation Camp, involved in participant management, crew coordination, activity facilitation, and overall event execution.", icon: <Globe className="text-purple-400" size={18} />, postUrl: "https://www.facebook.com/faysal.ibne.safir.shanto" },
-              { role: "Cadet Sergeant", org: "Bangladesh National Cadet Corps (BNCC)", date: "2023 – 2024", desc: "Served during 2023–2024, participating in regular military-style training, drills, leadership activities, discipline development, and team-based cadet programs.", icon: <Flag className="text-amber-500" size={18} />, postUrl: "https://www.facebook.com/faysal.ibne.safir.shanto" }
+              { role: "Executive Member", org: "AI Community BUBT", date: "2025 – Present", desc: "Involved in BAIC 2025, AI-focused workshops, competitions, and community activities. Worked as part of the organizing team and was also a member of Team Elite, the Champion of the Pitch Battle.", icon: <Globe className="text-indigo-400" size={18} /> },
+              { role: "Executive", org: "Hult Prize at BUBT", date: "2025 – 2026", desc: "Involved in Hult Prize 2025–26, including entrepreneurship programs, team activities, campus events, and various program execution activities.", icon: <Crown className="text-amber-400" size={18} /> },
+              { role: "Treasurer", org: "Leo Club of Dhaka Century Plus", date: "2026 – Present", desc: "Currently involved in various community service, awareness, and social welfare initiatives, including a Women’s Reproductive Health & Infertility Awareness Seminar.", icon: <HeartHandshake className="text-pink-400" size={18} /> },
+              { role: "Crew Facilitator", org: "Space Innovation Camp", date: "2026 – Present", desc: "Currently working as a Crew Facilitator at Space Innovation Camp, involved in participant management, crew coordination, activity facilitation, and overall event execution.", icon: <Globe className="text-purple-400" size={18} /> },
+              { role: "Cadet Sergeant", org: "Bangladesh National Cadet Corps (BNCC)", date: "2023 – 2024", desc: "Served during 2023–2024, participating in regular military-style training, drills, leadership activities, discipline development, and team-based cadet programs.", icon: <Flag className="text-amber-500" size={18} /> }
             ].map((lead, i) => (
               <div key={i} className="glass-panel glow-border p-6 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition">
                 <div className="flex items-start gap-4 flex-1">
@@ -343,16 +338,6 @@ export default function Home() {
                     <h3 className="font-bold text-white text-base">{lead.role}</h3>
                     <p className="text-xs text-blue-400 font-semibold">{lead.org}</p>
                     <p className="text-xs text-gray-400 leading-relaxed">{lead.desc}</p>
-                    {lead.postUrl && (
-                      <a
-                        href={lead.postUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-blue-400 hover:text-blue-300 transition pt-1"
-                      >
-                        View Post ↗
-                      </a>
-                    )}
                   </div>
                 </div>
                 <span className="text-xs font-mono bg-gray-900 border border-gray-800 text-gray-400 px-3 py-1 rounded-lg whitespace-nowrap">{lead.date}</span>
@@ -361,17 +346,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Dedicated BUBT Business Club Section */}
-        <BusinessClub />
+        {/* Dedicated BUBT Business Club & ECA Showcase Section (Moved right after Leadership) */}
+        <EcaShowcase />
 
         {/* Volunteering & Community Service Section */}
         <VolunteeringLeadership />
-
-        {/* Courses & Certifications Section (ICPC-First) */}
-        <Courses />
-
-        {/* Work Photo Gallery Section */}
-        <Gallery />
 
         {/* Featured Projects & Graphic Design Works */}
         <section id="portfolio" className="space-y-8">

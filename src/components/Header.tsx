@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 
 interface HeaderProps {
@@ -10,27 +11,28 @@ interface HeaderProps {
 
 export default function Header({ isHome = true }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  const isCurrentHome = pathname === '/' || isHome;
+
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     closeMenu();
-    if (typeof window !== 'undefined') {
-      const isCurrentPathHome = window.location.pathname === '/';
-      if (isCurrentPathHome || isHome) {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        if (window.location.hash) {
-          window.history.pushState(null, '', '/');
-        }
+    if (pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.location.hash) {
+        window.history.pushState(null, '', '/');
       }
     }
   };
 
   const getHref = (anchor: string) => {
-    if (anchor === '/blog') return '/blog';
-    return isHome ? `#${anchor}` : `/#${anchor}`;
+    if (anchor === 'gallery') return '/gallery';
+    if (anchor === 'blog') return '/blog';
+    return isCurrentHome ? `#${anchor}` : `/#${anchor}`;
   };
 
   return (
@@ -47,11 +49,12 @@ export default function Header({ isHome = true }: HeaderProps) {
         <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-400">
           <Link href="/" onClick={handleLogoClick} className="hover:text-white transition">Home</Link>
           <Link href={getHref("about")} className="hover:text-white transition">About</Link>
+          <Link href={getHref("skills")} className="hover:text-white transition">Skills</Link>
           <Link href={getHref("experience")} className="hover:text-white transition">Experience</Link>
           <Link href={getHref("leadership")} className="hover:text-white transition">Leadership</Link>
+          <Link href={getHref("business-club")} className="hover:text-white transition">Business Club</Link>
           <Link href={getHref("volunteering")} className="hover:text-white transition">Volunteering</Link>
-          <Link href={getHref("courses")} className="hover:text-white transition">Courses</Link>
-          <Link href={getHref("gallery")} className="hover:text-white transition">Gallery</Link>
+          <Link href="/gallery" className="hover:text-white transition">Gallery</Link>
           <Link href={getHref("portfolio")} className="hover:text-white transition">Portfolio</Link>
           <Link href="/blog" className="hover:text-white transition">Blog</Link>
           <Link href={getHref("contact")} className="hover:text-white transition">Contact</Link>
@@ -105,6 +108,13 @@ export default function Header({ isHome = true }: HeaderProps) {
             About
           </Link>
           <Link
+            href={getHref("skills")}
+            onClick={closeMenu}
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+          >
+            Skills
+          </Link>
+          <Link
             href={getHref("experience")}
             onClick={closeMenu}
             className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
@@ -119,6 +129,13 @@ export default function Header({ isHome = true }: HeaderProps) {
             Leadership
           </Link>
           <Link
+            href={getHref("business-club")}
+            onClick={closeMenu}
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+          >
+            Business Club
+          </Link>
+          <Link
             href={getHref("volunteering")}
             onClick={closeMenu}
             className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
@@ -126,14 +143,7 @@ export default function Header({ isHome = true }: HeaderProps) {
             Volunteering
           </Link>
           <Link
-            href={getHref("courses")}
-            onClick={closeMenu}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
-          >
-            Courses
-          </Link>
-          <Link
-            href={getHref("gallery")}
+            href="/gallery"
             onClick={closeMenu}
             className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
           >
