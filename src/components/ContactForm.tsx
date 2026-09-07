@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, CheckCircle2, AlertCircle, Loader2, RefreshCw } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, Loader2, RefreshCw, Film } from 'lucide-react';
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -106,22 +106,23 @@ export function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div className="bg-[#091122]/90 border border-emerald-500/30 p-8 rounded-3xl space-y-6 text-center shadow-[0_0_30px_rgba(16,185,129,0.15)] animate-in fade-in zoom-in duration-300">
-        <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto border border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
-          <CheckCircle2 size={36} />
+      <div className="bg-[#0b1329]/90 border border-[#b49f6e]/40 p-8 rounded-3xl space-y-6 text-center shadow-[0_0_35px_rgba(180,159,110,0.15)] animate-in fade-in zoom-in duration-700">
+        <div className="w-16 h-16 bg-[#b49f6e]/20 text-[#b49f6e] rounded-full flex items-center justify-center mx-auto border border-[#b49f6e]/40 shadow-[0_0_20px_rgba(180,159,110,0.2)]">
+          <Film size={32} className="animate-pulse" />
         </div>
         <div className="space-y-2">
-          <h3 className="text-2xl font-bold text-white">Message Sent Successfully! 🚀</h3>
-          <p className="text-sm text-gray-300 max-w-md mx-auto leading-relaxed">
-            Thank you for reaching out! Your message has been forwarded straight to{' '}
-            <span className="text-emerald-400 font-semibold">faysal.shanto.official@gmail.com</span>. I will respond to your email address as soon as possible.
+          <div className="text-xs font-mono text-[#b49f6e] tracking-widest uppercase">SIGNAL RECEIVED</div>
+          <h3 className="text-2xl font-serif font-bold text-white">Message Delivered</h3>
+          <p className="text-xs text-slate-300 max-w-md mx-auto leading-relaxed font-light">
+            Thank you for reaching out. Your transmission has been dispatched to{' '}
+            <span className="text-[#b49f6e] font-semibold">faysal.shanto.official@gmail.com</span>. I will respond to your inquiry shortly.
           </p>
         </div>
         <button
           onClick={handleReset}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition shadow-[0_0_15px_rgba(37,99,235,0.4)] cursor-pointer"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#b49f6e] hover:bg-[#c5a880] text-black font-semibold text-xs tracking-wider uppercase transition-all shadow-[0_0_15px_rgba(180,159,110,0.3)] cursor-pointer"
         >
-          <RefreshCw size={16} /> Send Another Message
+          <RefreshCw size={14} /> Send Another Message
         </button>
       </div>
     );
@@ -130,8 +131,8 @@ export function ContactForm() {
   return (
     <div className="space-y-4">
       {status === 'error' && errorMessage && (
-        <div className="flex items-start gap-3 p-4 bg-red-950/50 border border-red-500/40 rounded-xl text-red-300 text-sm animate-in fade-in duration-200">
-          <AlertCircle size={20} className="text-red-400 shrink-0 mt-0.5" />
+        <div className="flex items-start gap-3 p-4 bg-red-950/40 border border-red-500/30 rounded-xl text-red-300 text-xs animate-in fade-in duration-300">
+          <AlertCircle size={18} className="text-red-400 shrink-0 mt-0.5" />
           <div className="flex-1">
             <p className="font-semibold text-red-200">Failed to Send Message</p>
             <p className="text-xs text-red-300/90 mt-0.5">{errorMessage}</p>
@@ -142,8 +143,8 @@ export function ContactForm() {
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="firstName" className="block text-xs font-semibold text-gray-400 mb-1">
-              First Name <span className="text-blue-400">*</span>
+            <label htmlFor="firstName" className="block text-xs font-mono text-slate-400 mb-1 tracking-wider uppercase">
+              First Name <span className="text-[#b49f6e]">*</span>
             </label>
             <input
               id="firstName"
@@ -153,13 +154,13 @@ export function ContactForm() {
               value={formData.firstName}
               onChange={handleChange}
               disabled={status === 'loading'}
-              className="w-full px-4 py-3 bg-[#060913] border border-gray-800 rounded-xl text-sm text-gray-200 focus:outline-none focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
+              className="w-full px-4 py-3 bg-[#04060a] border border-[#2c3b59]/50 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-[#b49f6e] disabled:opacity-50 disabled:cursor-not-allowed transition duration-300"
               required
             />
           </div>
           <div>
-            <label htmlFor="lastName" className="block text-xs font-semibold text-gray-400 mb-1">
-              Last Name <span className="text-blue-400">*</span>
+            <label htmlFor="lastName" className="block text-xs font-mono text-slate-400 mb-1 tracking-wider uppercase">
+              Last Name <span className="text-[#b49f6e]">*</span>
             </label>
             <input
               id="lastName"
@@ -169,15 +170,15 @@ export function ContactForm() {
               value={formData.lastName}
               onChange={handleChange}
               disabled={status === 'loading'}
-              className="w-full px-4 py-3 bg-[#060913] border border-gray-800 rounded-xl text-sm text-gray-200 focus:outline-none focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
+              className="w-full px-4 py-3 bg-[#04060a] border border-[#2c3b59]/50 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-[#b49f6e] disabled:opacity-50 disabled:cursor-not-allowed transition duration-300"
               required
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-xs font-semibold text-gray-400 mb-1">
-            Email Address <span className="text-blue-400">*</span>
+          <label htmlFor="email" className="block text-xs font-mono text-slate-400 mb-1 tracking-wider uppercase">
+            Email Address <span className="text-[#b49f6e]">*</span>
           </label>
           <input
             id="email"
@@ -187,14 +188,14 @@ export function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             disabled={status === 'loading'}
-            className="w-full px-4 py-3 bg-[#060913] border border-gray-800 rounded-xl text-sm text-gray-200 focus:outline-none focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
+            className="w-full px-4 py-3 bg-[#04060a] border border-[#2c3b59]/50 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-[#b49f6e] disabled:opacity-50 disabled:cursor-not-allowed transition duration-300"
             required
           />
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-xs font-semibold text-gray-400 mb-1">
-            Your Message <span className="text-blue-400">*</span>
+          <label htmlFor="message" className="block text-xs font-mono text-slate-400 mb-1 tracking-wider uppercase">
+            Your Message <span className="text-[#b49f6e]">*</span>
           </label>
           <textarea
             id="message"
@@ -204,7 +205,7 @@ export function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             disabled={status === 'loading'}
-            className="w-full px-4 py-3 bg-[#060913] border border-gray-800 rounded-xl text-sm text-gray-200 focus:outline-none focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition resize-none"
+            className="w-full px-4 py-3 bg-[#04060a] border border-[#2c3b59]/50 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-[#b49f6e] disabled:opacity-50 disabled:cursor-not-allowed transition duration-300 resize-none"
             required
           ></textarea>
         </div>
@@ -212,17 +213,17 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-blue-800/60 text-white font-bold py-3.5 rounded-xl transition text-sm shadow-[0_0_15px_rgba(37,99,235,0.3)] flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
+          className="w-full bg-[#b49f6e] hover:bg-[#c5a880] disabled:bg-[#b49f6e]/40 text-black font-semibold uppercase tracking-wider py-3.5 rounded-xl transition-all duration-300 text-xs shadow-[0_0_20px_rgba(180,159,110,0.25)] flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
         >
           {status === 'loading' ? (
             <>
-              <Loader2 size={18} className="animate-spin text-blue-200" />
-              <span>Sending Message...</span>
+              <Loader2 size={16} className="animate-spin text-black" />
+              <span>Transmitting Message...</span>
             </>
           ) : (
             <>
               <span>Submit Message</span>
-              <Send size={16} />
+              <Send size={15} />
             </>
           )}
         </button>

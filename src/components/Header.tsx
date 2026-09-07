@@ -36,35 +36,35 @@ export default function Header({ isHome = true }: HeaderProps) {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[#060913]/95 backdrop-blur-md border-b border-gray-800/60 shadow-lg">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[#04060a]/95 backdrop-blur-md border-b border-[#b49f6e]/15 shadow-xl">
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         
         {/* Brand Logo & Name */}
-        <Link href="/" onClick={handleLogoClick} className="flex items-center gap-2 group cursor-pointer">
-          <span className="w-3 h-3 bg-blue-600 rounded-full shadow-[0_0_12px_#2563eb] group-hover:scale-110 transition-transform"></span>
-          <span className="font-bold text-xl tracking-wider text-white font-sans group-hover:text-blue-400 transition-colors">Faysal</span>
+        <Link href="/" onClick={handleLogoClick} className="flex items-center gap-2.5 group cursor-pointer">
+          <span className="w-2.5 h-2.5 bg-[#b49f6e] rounded-full shadow-[0_0_10px_#b49f6e] group-hover:scale-125 transition-transform"></span>
+          <span className="font-serif font-bold text-xl tracking-wider text-white group-hover:text-[#b49f6e] transition-colors">Faysal</span>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-400">
-          <Link href="/" onClick={handleLogoClick} className="hover:text-white transition">Home</Link>
-          <Link href={getHref("about")} className="hover:text-white transition">About</Link>
-          <Link href={getHref("skills")} className="hover:text-white transition">Skills</Link>
-          <Link href={getHref("experience")} className="hover:text-white transition">Experience</Link>
-          <Link href={getHref("leadership")} className="hover:text-white transition">Leadership</Link>
-          <Link href={getHref("business-club")} className="hover:text-white transition">Business Club</Link>
-          <Link href={getHref("volunteering")} className="hover:text-white transition">Volunteering</Link>
-          <Link href="/gallery" className="hover:text-white transition">Gallery</Link>
-          <Link href={getHref("portfolio")} className="hover:text-white transition">Portfolio</Link>
-          <Link href="/blog" className="hover:text-white transition">Blog</Link>
-          <Link href={getHref("contact")} className="hover:text-white transition">Contact</Link>
+        <div className="hidden lg:flex items-center gap-6 text-xs font-mono tracking-wider text-slate-400">
+          <Link href="/" onClick={handleLogoClick} className="hover:text-[#b49f6e] transition">Home</Link>
+          <Link href={getHref("about")} className="hover:text-[#b49f6e] transition">About</Link>
+          <Link href={getHref("skills")} className="hover:text-[#b49f6e] transition">Skills</Link>
+          <Link href={getHref("experience")} className="hover:text-[#b49f6e] transition">Experience</Link>
+          <Link href={getHref("leadership")} className="hover:text-[#b49f6e] transition">Leadership</Link>
+          <Link href={getHref("business-club")} className="hover:text-[#b49f6e] transition">Business Club</Link>
+          <Link href={getHref("volunteering")} className="hover:text-[#b49f6e] transition">Volunteering</Link>
+          <Link href="/gallery" className="hover:text-[#b49f6e] transition">Gallery</Link>
+          <Link href={getHref("portfolio")} className="hover:text-[#b49f6e] transition">Portfolio</Link>
+          <Link href="/blog" className="hover:text-[#b49f6e] transition">Blog</Link>
+          <Link href={getHref("contact")} className="hover:text-[#b49f6e] transition">Contact</Link>
         </div>
 
         {/* Desktop Hire Me Action Button */}
         <div className="hidden lg:block">
           <a
             href={getHref("contact")}
-            className="bg-[#111827] hover:bg-blue-600 border border-gray-800 hover:border-blue-500 text-white px-5 py-2 rounded-full text-xs font-bold transition shadow-sm"
+            className="bg-[#0b1329] hover:bg-[#b49f6e] border border-[#b49f6e]/30 hover:border-[#b49f6e] text-slate-200 hover:text-black px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-sm"
           >
             Hire Me
           </a>
@@ -75,16 +75,16 @@ export default function Header({ isHome = true }: HeaderProps) {
           <a
             href={getHref("contact")}
             onClick={closeMenu}
-            className="bg-[#111827] hover:bg-blue-600 border border-gray-800 hover:border-blue-500 text-white px-3.5 py-1.5 rounded-full text-xs font-bold transition"
+            className="bg-[#0b1329] hover:bg-[#b49f6e] border border-[#b49f6e]/30 hover:border-[#b49f6e] text-slate-200 hover:text-black px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider transition"
           >
             Hire Me
           </a>
           <button
             onClick={toggleMenu}
-            className="p-2 text-gray-300 hover:text-white bg-[#0d1322] border border-gray-800 rounded-xl focus:outline-none cursor-pointer"
+            className="p-2 text-slate-300 hover:text-white bg-[#0b1329] border border-[#b49f6e]/20 rounded-xl focus:outline-none cursor-pointer"
             aria-label="Toggle mobile menu"
           >
-            {isOpen ? <X size={20} className="text-blue-400" /> : <Menu size={20} />}
+            {isOpen ? <X size={20} className="text-[#b49f6e]" /> : <Menu size={20} />}
           </button>
         </div>
 
