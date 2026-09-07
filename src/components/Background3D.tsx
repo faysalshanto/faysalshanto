@@ -95,7 +95,7 @@ export default function Background3D() {
       const mat = new THREE.MeshBasicMaterial({
         color,
         transparent: true,
-        opacity: 0.30,
+        opacity: 0.20,
       });
       const mesh = new THREE.Mesh(barGeo, mat);
       const x = i * BAR_SPACING - totalWidth / 2;

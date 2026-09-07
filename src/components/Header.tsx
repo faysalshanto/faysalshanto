@@ -52,7 +52,6 @@ export default function Header({ isHome = true }: HeaderProps) {
           <Link href={getHref("skills")} className="hover:text-[#b49f6e] transition">Skills</Link>
           <Link href={getHref("experience")} className="hover:text-[#b49f6e] transition">Experience</Link>
           <Link href={getHref("leadership")} className="hover:text-[#b49f6e] transition">Leadership</Link>
-          <Link href={getHref("business-club")} className="hover:text-[#b49f6e] transition">Business Club</Link>
           <Link href={getHref("volunteering")} className="hover:text-[#b49f6e] transition">Volunteering</Link>
           <Link href="/gallery" className="hover:text-[#b49f6e] transition">Gallery</Link>
           <Link href={getHref("portfolio")} className="hover:text-[#b49f6e] transition">Portfolio</Link>
@@ -96,77 +95,70 @@ export default function Header({ isHome = true }: HeaderProps) {
           <Link
             href="/"
             onClick={handleLogoClick}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-[#b49f6e] border-b border-gray-800/40"
           >
             Home
           </Link>
           <Link
             href={getHref("about")}
             onClick={closeMenu}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-[#b49f6e] border-b border-gray-800/40"
           >
             About
           </Link>
           <Link
             href={getHref("skills")}
             onClick={closeMenu}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-[#b49f6e] border-b border-gray-800/40"
           >
             Skills
           </Link>
           <Link
             href={getHref("experience")}
             onClick={closeMenu}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-[#b49f6e] border-b border-gray-800/40"
           >
             Experience
           </Link>
           <Link
             href={getHref("leadership")}
             onClick={closeMenu}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-[#b49f6e] border-b border-gray-800/40"
           >
             Leadership
           </Link>
           <Link
-            href={getHref("business-club")}
-            onClick={closeMenu}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
-          >
-            Business Club
-          </Link>
-          <Link
             href={getHref("volunteering")}
             onClick={closeMenu}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-[#b49f6e] border-b border-gray-800/40"
           >
             Volunteering
           </Link>
           <Link
             href="/gallery"
             onClick={closeMenu}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-[#b49f6e] border-b border-gray-800/40"
           >
             Gallery
           </Link>
           <Link
             href={getHref("portfolio")}
             onClick={closeMenu}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-[#b49f6e] border-b border-gray-800/40"
           >
             Portfolio
           </Link>
           <Link
             href="/blog"
             onClick={closeMenu}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400 border-b border-gray-800/40"
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-[#b49f6e] border-b border-gray-800/40"
           >
             Blog
           </Link>
           <Link
             href={getHref("contact")}
             onClick={closeMenu}
-            className="block py-2 text-base font-semibold text-gray-300 hover:text-blue-400"
+            className="block py-2 text-base font-semibold text-gray-300 hover:text-[#b49f6e]"
           >
             Contact
           </Link>

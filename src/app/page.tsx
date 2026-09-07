@@ -54,19 +54,19 @@ export default function Home() {
         <div className="space-y-6 text-center md:text-left flex-1 relative z-10">
           
           {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#b49f6e]/10 border border-[#b49f6e]/30 text-[#b49f6e] text-xs font-mono tracking-wider uppercase">
-            <span className="w-2 h-2 rounded-full bg-[#b49f6e] animate-pulse shadow-[0_0_8px_#b49f6e]"></span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full tracking-[0.25em] text-[10px] uppercase border border-amber-500/30 bg-amber-500/5 text-amber-200/80 font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_8px_#f59e0b]"></span>
             Available for Strategic & Marketing Roles
           </div>
 
           {/* Main Headline */}
           <div className="space-y-3">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-white leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-[1.08] text-white">
               Hi, I'm <span className="bg-gradient-to-r from-slate-100 via-slate-300 to-[#b49f6e] bg-clip-text text-transparent">Faysal Ibne Safir</span> Shanto
             </h1>
             
             {/* Title Line */}
-            <p className="text-[#b49f6e] font-mono text-sm sm:text-base md:text-lg tracking-widest uppercase">
+            <p className="tracking-[0.3em] text-xs font-semibold text-zinc-400 uppercase">
               Digital Marketer, Startup Founder & Student Leader
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function Home() {
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
-            <a href="#skills" className="bg-[#b49f6e] hover:bg-[#c5a880] text-black px-7 py-3.5 rounded-xl font-semibold uppercase tracking-wider transition-all duration-300 text-xs shadow-[0_0_20px_rgba(180,159,110,0.25)] flex items-center gap-2 cursor-pointer">
+            <a href="#skills" className="bg-gradient-to-r from-amber-600/90 to-amber-700/90 text-white font-medium shadow-[0_0_20px_rgba(217,119,6,0.25)] hover:shadow-[0_0_25px_rgba(217,119,6,0.45)] transition-all px-7 py-3.5 rounded-xl text-xs flex items-center gap-2 cursor-pointer uppercase tracking-wider">
               Explore Skills <ArrowRight size={15} />
             </a>
             <a href="#contact" className="bg-[#0b1329] hover:bg-slate-800 border border-[#b49f6e]/30 hover:border-[#b49f6e]/60 text-slate-200 px-7 py-3.5 rounded-xl font-semibold uppercase tracking-wider transition-all text-xs">
@@ -123,15 +123,15 @@ export default function Home() {
 
         {/* Right Column: Profile Image */}
         <div className="relative flex justify-center items-center">
-          <div className="absolute -inset-1.5 bg-gradient-to-r from-[#1b2a4a] to-[#b49f6e]/30 rounded-3xl blur-xl opacity-40 group-hover:opacity-70 transition duration-700"></div>
+          <div className="absolute -inset-1.5 bg-gradient-to-r from-[#1b2a4a] to-amber-500/20 rounded-3xl blur-xl opacity-40 group-hover:opacity-70 transition duration-700"></div>
 
-          <div className="w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-[#0b1329] rounded-3xl border-2 border-[#b49f6e]/40 shadow-[0_0_40px_rgba(180,159,110,0.15)] overflow-hidden relative group cursor-pointer transition-all duration-700 hover:border-[#b49f6e] hover:shadow-[0_0_50px_rgba(180,159,110,0.3)]">
+          <div className="w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-[#0b1329] rounded-3xl border border-amber-500/20 shadow-[inset_0_0_40px_rgba(0,0,0,0.8)] overflow-hidden relative group cursor-pointer transition-all duration-700 hover:border-amber-500/40 hover:shadow-[0_0_50px_rgba(217,119,6,0.25)]">
             <img
               src="/profile.jpg"
               alt="Faysal Ibne Safir Shanto"
               className="w-full h-full object-cover object-[center_top] transition-transform duration-700 group-hover:scale-105 contrast-105 brightness-90 sepia-[0.10] saturate-[0.85]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#04060a] via-transparent to-transparent opacity-70"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#04060a] via-transparent to-transparent opacity-70 pointer-events-none"></div>
           </div>
 
           <div className="absolute -bottom-4 right-2 sm:right-6 bg-[#0b1329]/95 backdrop-blur-md border border-[#b49f6e]/40 px-4 py-2.5 rounded-2xl shadow-2xl flex items-center gap-2.5">
