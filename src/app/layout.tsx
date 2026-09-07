@@ -48,8 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className="bg-[#04060a] text-slate-200 antialiased selection:bg-[#b49f6e] selection:text-black">
-        <div className="film-grain" />
+      <body className="bg-[#07090e] text-slate-100 antialiased selection:bg-cyan-500 selection:text-black">
         {children}
       </body>
     </html>

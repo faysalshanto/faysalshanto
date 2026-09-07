@@ -49,7 +49,7 @@ const volunteerData: VolunteerProgram[] = [
     year: '2023 – 2024',
     description: 'Participated in regular military-style training, leadership drills, discipline building, and campus safety leadership.',
     postUrl: 'https://www.facebook.com/faysal.ibne.safir.shanto',
-    icon: <Flag className="text-amber-400" size={20} />,
+    icon: <Flag className="text-cyan-400" size={20} />,
   },
   {
     id: 'hult-prize',

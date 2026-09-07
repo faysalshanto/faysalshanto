@@ -38,7 +38,7 @@ export default function Background3D() {
 
     // ---------- Core scene setup ----------
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x04060a, 0.025);
+    scene.fog = new THREE.FogExp2(0x07090e, 0.028);
 
     const camera = new THREE.PerspectiveCamera(
       50,
@@ -81,8 +81,8 @@ export default function Background3D() {
     const barGeo = new THREE.BoxGeometry(BAR_WIDTH, 1, BAR_WIDTH);
     barGeo.translate(0, 0.5, 0); // pivot at base so scale.y grows upward
 
-    const colorLow = new THREE.Color(0x111c33); // muted steel dark blue
-    const colorHigh = new THREE.Color(0xb49f6e); // tungsten vintage gold highlight
+    const colorLow = new THREE.Color(0x0f2b5c); // electric deep blue
+    const colorHigh = new THREE.Color(0x06b6d4); // vibrant cyan
 
     for (let i = 0; i < BAR_COUNT; i++) {
       // Ascending growth trend across the row with realistic market wobble
@@ -90,12 +90,12 @@ export default function Background3D() {
       const baseHeight = trend + Math.sin(i * 0.9) * 0.35;
 
       const t = i / (BAR_COUNT - 1);
-      const color = colorLow.clone().lerp(colorHigh, t * 0.65);
+      const color = colorLow.clone().lerp(colorHigh, t);
 
       const mat = new THREE.MeshBasicMaterial({
         color,
         transparent: true,
-        opacity: 0.20,
+        opacity: 0.35,
       });
       const mesh = new THREE.Mesh(barGeo, mat);
       const x = i * BAR_SPACING - totalWidth / 2;
@@ -106,9 +106,9 @@ export default function Background3D() {
       // Thin edge outline per bar for crisp terminal chart lines
       const edges = new THREE.EdgesGeometry(barGeo);
       const edgeMat = new THREE.LineBasicMaterial({
-        color: 0x2c3b59,
+        color: 0x38bdf8,
         transparent: true,
-        opacity: 0.15,
+        opacity: 0.20,
       });
       const outline = new THREE.LineSegments(edges, edgeMat);
       outline.scale.y = baseHeight;
@@ -119,7 +119,7 @@ export default function Background3D() {
         mesh,
         baseHeight,
         phase: Math.random() * Math.PI * 2,
-        speed: 0.12 + Math.random() * 0.15, // Meditative slow speed
+        speed: 0.30 + Math.random() * 0.35,
         x,
       });
     }
@@ -130,16 +130,16 @@ export default function Background3D() {
     );
     const indexGeo = new THREE.BufferGeometry().setFromPoints(indexPoints);
     const indexMat = new THREE.LineBasicMaterial({
-      color: 0xb49f6e,
+      color: 0x22d3ee,
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.50,
     });
     const indexLine = new THREE.Line(indexGeo, indexMat);
     barGroup.add(indexLine);
 
     // Soft duplicate underneath for glow-halo effect
     const indexGlowMat = new THREE.LineBasicMaterial({
-      color: 0x1b2a4a,
+      color: 0x2563eb,
       transparent: true,
       opacity: 0.15,
     });
@@ -148,20 +148,20 @@ export default function Background3D() {
     barGroup.add(indexGlow);
 
     // ---------- 3. MOMENTUM PULSE (traveling point along the index) ----------
-    const pulseGeo = new THREE.SphereGeometry(0.07, 16, 16);
+    const pulseGeo = new THREE.SphereGeometry(0.08, 16, 16);
     const pulseMat = new THREE.MeshBasicMaterial({
-      color: 0xe2d9c2,
+      color: 0xe0f2fe,
       transparent: true,
-      opacity: 0.70,
+      opacity: 0.85,
     });
     const pulse = new THREE.Mesh(pulseGeo, pulseMat);
     barGroup.add(pulse);
 
-    const pulseTrailGeo = new THREE.SphereGeometry(0.14, 12, 12);
+    const pulseTrailGeo = new THREE.SphereGeometry(0.15, 12, 12);
     const pulseTrailMat = new THREE.MeshBasicMaterial({
-      color: 0xb49f6e,
+      color: 0x06b6d4,
       transparent: true,
-      opacity: 0.10,
+      opacity: 0.15,
     });
     const pulseTrail = new THREE.Mesh(pulseTrailGeo, pulseTrailMat);
     barGroup.add(pulseTrail);
@@ -187,16 +187,16 @@ export default function Background3D() {
     const NODE_COUNT = 9;
     for (let i = 0; i < NODE_COUNT; i++) {
       const nodeMat = new THREE.LineBasicMaterial({
-        color: 0xb49f6e,
+        color: 0x22d3ee,
         transparent: true,
-        opacity: 0.22,
+        opacity: 0.30,
       });
       const mesh = new THREE.LineSegments(icoEdges, nodeMat);
 
       const linkMat = new THREE.LineBasicMaterial({
-        color: 0x1b2a4a,
+        color: 0x2563eb,
         transparent: true,
-        opacity: 0.08,
+        opacity: 0.10,
       });
       const linkGeo = new THREE.BufferGeometry().setFromPoints([
         new THREE.Vector3(),
@@ -213,7 +213,7 @@ export default function Background3D() {
         angle: (i / NODE_COUNT) * Math.PI * 2,
         radius: 4.5 + Math.random() * 3.5,
         height: 2.5 + Math.random() * 2.2,
-        speed: 0.02 + Math.random() * 0.02, // Glacial orbit
+        speed: 0.05 + Math.random() * 0.04,
         targetIndex: Math.floor((i / NODE_COUNT) * BAR_COUNT),
       });
     }

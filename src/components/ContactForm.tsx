@@ -106,21 +106,21 @@ export function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div className="bg-[#0b1329]/90 border border-[#b49f6e]/40 p-8 rounded-3xl space-y-6 text-center shadow-[0_0_35px_rgba(180,159,110,0.15)] animate-in fade-in zoom-in duration-700">
-        <div className="w-16 h-16 bg-[#b49f6e]/20 text-[#b49f6e] rounded-full flex items-center justify-center mx-auto border border-[#b49f6e]/40 shadow-[0_0_20px_rgba(180,159,110,0.2)]">
-          <Film size={32} className="animate-pulse" />
+      <div className="bg-slate-900/80 border border-cyan-500/40 p-8 rounded-3xl space-y-6 text-center shadow-[0_0_35px_rgba(6,182,212,0.15)] backdrop-blur-xl animate-in fade-in zoom-in duration-700">
+        <div className="w-16 h-16 bg-cyan-500/20 text-cyan-400 rounded-full flex items-center justify-center mx-auto border border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.25)]">
+          <Send size={30} className="animate-pulse" />
         </div>
         <div className="space-y-2">
-          <div className="text-xs font-mono text-[#b49f6e] tracking-widest uppercase">SIGNAL RECEIVED</div>
-          <h3 className="text-2xl font-serif font-bold text-white">Message Delivered</h3>
+          <div className="text-xs font-mono text-cyan-400 tracking-widest uppercase">SIGNAL RECEIVED</div>
+          <h3 className="text-2xl font-sans font-extrabold text-white">Message Delivered</h3>
           <p className="text-xs text-slate-300 max-w-md mx-auto leading-relaxed font-light">
             Thank you for reaching out. Your transmission has been dispatched to{' '}
-            <span className="text-[#b49f6e] font-semibold">faysal.shanto.official@gmail.com</span>. I will respond to your inquiry shortly.
+            <span className="text-cyan-400 font-semibold">faysal.shanto.official@gmail.com</span>. I will respond to your inquiry shortly.
           </p>
         </div>
         <button
           onClick={handleReset}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#b49f6e] hover:bg-[#c5a880] text-black font-semibold text-xs tracking-wider uppercase transition-all shadow-[0_0_15px_rgba(180,159,110,0.3)] cursor-pointer"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-black font-extrabold text-xs tracking-wider uppercase transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] cursor-pointer"
         >
           <RefreshCw size={14} /> Send Another Message
         </button>
@@ -144,7 +144,7 @@ export function ContactForm() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="firstName" className="block text-xs font-mono text-slate-400 mb-1 tracking-wider uppercase">
-              First Name <span className="text-[#b49f6e]">*</span>
+              First Name <span className="text-cyan-400">*</span>
             </label>
             <input
               id="firstName"
@@ -154,13 +154,13 @@ export function ContactForm() {
               value={formData.firstName}
               onChange={handleChange}
               disabled={status === 'loading'}
-              className="w-full px-4 py-3 bg-[#04060a] border border-[#2c3b59]/50 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-[#b49f6e] disabled:opacity-50 disabled:cursor-not-allowed transition duration-300"
+              className="w-full px-4 py-3 bg-slate-950/80 border border-slate-700/50 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed transition duration-300"
               required
             />
           </div>
           <div>
             <label htmlFor="lastName" className="block text-xs font-mono text-slate-400 mb-1 tracking-wider uppercase">
-              Last Name <span className="text-[#b49f6e]">*</span>
+              Last Name <span className="text-cyan-400">*</span>
             </label>
             <input
               id="lastName"
@@ -170,7 +170,7 @@ export function ContactForm() {
               value={formData.lastName}
               onChange={handleChange}
               disabled={status === 'loading'}
-              className="w-full px-4 py-3 bg-[#04060a] border border-[#2c3b59]/50 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-[#b49f6e] disabled:opacity-50 disabled:cursor-not-allowed transition duration-300"
+              className="w-full px-4 py-3 bg-slate-950/80 border border-slate-700/50 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed transition duration-300"
               required
             />
           </div>
@@ -178,7 +178,7 @@ export function ContactForm() {
 
         <div>
           <label htmlFor="email" className="block text-xs font-mono text-slate-400 mb-1 tracking-wider uppercase">
-            Email Address <span className="text-[#b49f6e]">*</span>
+            Email Address <span className="text-cyan-400">*</span>
           </label>
           <input
             id="email"
@@ -188,14 +188,14 @@ export function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             disabled={status === 'loading'}
-            className="w-full px-4 py-3 bg-[#04060a] border border-[#2c3b59]/50 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-[#b49f6e] disabled:opacity-50 disabled:cursor-not-allowed transition duration-300"
+            className="w-full px-4 py-3 bg-slate-950/80 border border-slate-700/50 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed transition duration-300"
             required
           />
         </div>
 
         <div>
           <label htmlFor="message" className="block text-xs font-mono text-slate-400 mb-1 tracking-wider uppercase">
-            Your Message <span className="text-[#b49f6e]">*</span>
+            Your Message <span className="text-cyan-400">*</span>
           </label>
           <textarea
             id="message"
@@ -205,7 +205,7 @@ export function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             disabled={status === 'loading'}
-            className="w-full px-4 py-3 bg-[#04060a] border border-[#2c3b59]/50 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-[#b49f6e] disabled:opacity-50 disabled:cursor-not-allowed transition duration-300 resize-none"
+            className="w-full px-4 py-3 bg-slate-950/80 border border-slate-700/50 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed transition duration-300 resize-none"
             required
           ></textarea>
         </div>
@@ -213,7 +213,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="w-full bg-[#b49f6e] hover:bg-[#c5a880] disabled:bg-[#b49f6e]/40 text-black font-semibold uppercase tracking-wider py-3.5 rounded-xl transition-all duration-300 text-xs shadow-[0_0_20px_rgba(180,159,110,0.25)] flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
+          className="w-full bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-300 hover:to-blue-500 disabled:opacity-50 text-black font-extrabold uppercase tracking-wider py-3.5 rounded-xl transition-all duration-300 text-xs shadow-[0_0_20px_rgba(6,182,212,0.3)] flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
         >
           {status === 'loading' ? (
             <>
