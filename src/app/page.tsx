@@ -428,7 +428,7 @@ export default function Home() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 {[
-                  { org: "BUBT Business Club", desc: "Social media creatives, event posters, promotional materials." },
+                  { org: "BUBT Business Club", desc: "Official Voice of Business branding, stage backdrops & social campaigns.", link: "/voice-of-business" },
                   { org: "Career Guidance Office, BUBT", desc: "Event graphics, flyers, and visual communication materials." },
                   { org: "Hult Prize at BUBT", desc: "Event promotions, campaign creatives, and brand assets." },
                   { org: "Elevetr AI", desc: "Social media graphics, marketing creatives, and campaign visuals." },
@@ -436,9 +436,16 @@ export default function Home() {
                   { org: "BASIS Students’ Forum", desc: "Event posters, social creatives, and organizational graphics." }
                 ].map((item, idx) => (
                   <div key={idx} className="bg-slate-950/80 border border-slate-800 p-3.5 rounded-xl space-y-1 hover:border-cyan-500/40 transition">
-                    <div className="flex items-center gap-1.5 text-xs font-semibold text-cyan-400">
-                      <CheckCircle2 size={13} className="flex-shrink-0" />
-                      <span className="truncate">{item.org}</span>
+                    <div className="flex items-center justify-between gap-1.5">
+                      <div className="flex items-center gap-1.5 text-xs font-semibold text-cyan-400">
+                        <CheckCircle2 size={13} className="flex-shrink-0" />
+                        <span className="truncate">{item.org}</span>
+                      </div>
+                      {item.link && (
+                        <Link href={item.link} className="text-[10px] font-mono text-cyan-400 hover:text-cyan-300 underline decoration-cyan-500/50">
+                          View 25+ Assets ↗
+                        </Link>
+                      )}
                     </div>
                     <p className="text-[11px] text-slate-400 leading-snug line-clamp-2">{item.desc}</p>
                   </div>
@@ -556,7 +563,7 @@ export default function Home() {
       </button>
 
       <footer className="relative z-10 bg-[#07090e] border-t border-slate-800/80 py-8 text-center text-xs font-mono text-slate-400 mt-20">
-        <p>© 2026 Faysal Ibne Safir Shanto. Modern 3D Interactive Portfolio.</p>
+        <p>© 2026 Faysal Ibne Safir Shanto. All Rights Reserved.</p>
       </footer>
     </div>
   );

@@ -97,7 +97,7 @@ export default async function EcaDetailPage({ params }: { params: Promise<{ slug
 
       {/* Footer */}
       <footer className="relative z-10 bg-[#03050a] border-t border-gray-800/80 py-8 text-center text-sm text-gray-500">
-        <p>© 2026 Faysal Ibne Safir Shanto.</p>
+        <p>© 2026 Faysal Ibne Safir Shanto. All Rights Reserved.</p>
       </footer>
     </div>
   );

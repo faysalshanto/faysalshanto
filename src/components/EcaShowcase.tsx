@@ -45,8 +45,18 @@ export default function EcaShowcase() {
             </div>
 
             {/* Link to detail page */}
-            <div className="pt-4 border-t border-gray-800/80 flex items-center justify-between">
-              <span className="text-xs text-gray-400 font-mono">View Case Study</span>
+            <div className="pt-4 border-t border-gray-800/80 flex flex-wrap items-center justify-between gap-2">
+              {eca.slug === 'bubt-business-club' ? (
+                <Link
+                  href="/voice-of-business"
+                  className="inline-flex items-center gap-1 text-[11px] font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 px-2.5 py-1 rounded-lg hover:bg-cyan-500/20 transition"
+                >
+                  <span>Voice of Business Showcase</span>
+                  <ArrowRight size={12} />
+                </Link>
+              ) : (
+                <span className="text-xs text-gray-400 font-mono">View Case Study</span>
+              )}
               <Link
                 href={`/eca/${eca.slug}`}
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-400 hover:text-blue-300 transition group-hover:translate-x-0.5"

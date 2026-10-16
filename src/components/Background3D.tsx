@@ -4,26 +4,19 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 /**
- * Background3D — "Ascending Index"
+ * Background3D — "Interactive Ambient Cosmic Mesh & Studio Glow Orbs"
+ * Inspired by MZ Media (mzmedia.digital) high-end digital agency aesthetic.
  *
- * A cinematic, full-viewport WebGL scene built specifically around
- * marketing / finance / investment / startup-growth iconography:
- *
- *  1. GROWTH BARS — a row of animated bar-chart columns (market index /
- *     revenue growth), each breathing on its own offset so the whole
- *     row reads like a live trading terminal.
- *  2. INDEX LINE — a glowing curve traced across the top of the bars,
- *     redrawn every frame from live bar heights, like a stock index
- *     overlay chart.
- *  3. MOMENTUM PULSE — a bright point that continuously travels along
- *     the index line, reading as "capital in motion" / live momentum.
- *  4. DEAL NODES — orbiting icosahedra above the bars representing
- *     investment rounds / partnerships / marketing channels, each
- *     linked to the index line by a faint "signal" thread.
- *  5. MOUSE PARALLAX — camera eases toward the pointer for a subtle
- *     boardroom-tilt, never intercepting DOM clicks.
- *
- * Fully client-only (mounted via SceneCanvas with ssr:false).
+ * Architecture:
+ *  1. Deep Obsidian Void: Canvas background (#06070a) with subtle exponential fog.
+ *  2. Soft Ambient Radial Light Flares: 2 deep, blurred luminous glow spots
+ *     (deep royal blue #1d4ed8 and electric cyan #06b6d4) positioned off-center
+ *     to give cinematic depth without obstructing typography.
+ *  3. Interactive Constellation Field: 140 micro-points interconnected with
+ *     faint hairline dynamic lines (opacity ~0.18) that gently drift and react
+ *     subtly to cursor movement.
+ *  4. 60fps Optimization: Strictly pointer-events-none, capped DPR at 2,
+ *     and full WebGL resource disposal on unmount.
  */
 export default function Background3D() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -36,9 +29,9 @@ export default function Background3D() {
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    // ---------- Core scene setup ----------
+    // ---------- Core Scene Setup ----------
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x07090e, 0.028);
+    scene.fog = new THREE.FogExp2(0x06070a, 0.024);
 
     const camera = new THREE.PerspectiveCamera(
       50,
@@ -46,8 +39,9 @@ export default function Background3D() {
       0.1,
       100
     );
-    camera.position.set(0, 2.6, 12.5);
-    camera.lookAt(0, 0.6, 0);
+    const initialZ = window.innerWidth < 768 ? 12.5 : 10.0;
+    camera.position.set(0, 0, initialZ);
+    camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -56,201 +50,225 @@ export default function Background3D() {
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 0);
+    renderer.setClearColor(0x06070a, 1);
     mount.appendChild(renderer.domElement);
 
-    // ---------- 1. GROWTH BARS (market index / revenue columns) ----------
-    const BAR_COUNT = 28;
-    const BAR_SPACING = 0.62;
-    const BAR_WIDTH = 0.34;
-    const totalWidth = (BAR_COUNT - 1) * BAR_SPACING;
+    // Dynamic Glow Dot Texture (Crisp core with soft ambient falloff)
+    function createGlowDotTexture(): THREE.Texture {
+      const canvas = document.createElement("canvas");
+      canvas.width = 64;
+      canvas.height = 64;
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+        gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
+        gradient.addColorStop(0.2, "rgba(6, 182, 212, 0.9)");
+        gradient.addColorStop(0.55, "rgba(29, 78, 216, 0.35)");
+        gradient.addColorStop(1, "rgba(6, 7, 10, 0)");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 64, 64);
+      }
+      return new THREE.CanvasTexture(canvas);
+    }
 
-    type Bar = {
-      mesh: THREE.Mesh;
-      baseHeight: number;
+    // Large Soft Radial Flare Texture (Glow Orbs)
+    function createOrbTexture(innerColor: string, outerColor: string): THREE.Texture {
+      const canvas = document.createElement("canvas");
+      canvas.width = 256;
+      canvas.height = 256;
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        const gradient = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
+        gradient.addColorStop(0, innerColor);
+        gradient.addColorStop(0.45, outerColor);
+        gradient.addColorStop(0.85, "rgba(6, 7, 10, 0.05)");
+        gradient.addColorStop(1, "rgba(6, 7, 10, 0)");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 256, 256);
+      }
+      return new THREE.CanvasTexture(canvas);
+    }
+
+    const dotTexture = createGlowDotTexture();
+    const blueOrbTexture = createOrbTexture("rgba(29, 78, 216, 0.45)", "rgba(29, 78, 216, 0.15)");
+    const cyanOrbTexture = createOrbTexture("rgba(6, 182, 212, 0.40)", "rgba(6, 182, 212, 0.12)");
+
+    // ---------- 1. Soft Ambient Radial Light Flares (Glow Orbs) ----------
+    const orbGroup = new THREE.Group();
+    scene.add(orbGroup);
+
+    // Orb 1: Deep Royal Blue (#1d4ed8) - Upper Left Field
+    const blueOrbGeo = new THREE.PlaneGeometry(16, 16);
+    const blueOrbMat = new THREE.MeshBasicMaterial({
+      map: blueOrbTexture,
+      transparent: true,
+      opacity: 0.35,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+    const blueOrb = new THREE.Mesh(blueOrbGeo, blueOrbMat);
+    blueOrb.position.set(-6.5, 3.5, -4.5);
+    orbGroup.add(blueOrb);
+
+    // Orb 2: Electric Cyan (#06b6d4) - Lower Right Field
+    const cyanOrbGeo = new THREE.PlaneGeometry(14, 14);
+    const cyanOrbMat = new THREE.MeshBasicMaterial({
+      map: cyanOrbTexture,
+      transparent: true,
+      opacity: 0.28,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+    const cyanOrb = new THREE.Mesh(cyanOrbGeo, cyanOrbMat);
+    cyanOrb.position.set(6.8, -3.2, -4.0);
+    orbGroup.add(cyanOrb);
+
+    // ---------- 2. Interactive Constellation Field ----------
+    const POINT_COUNT = 140;
+    const CONNECT_DIST = 2.2;
+    const MAX_LINES = 320;
+
+    interface CosmicParticle {
+      x: number;
+      y: number;
+      z: number;
+      baseX: number;
+      baseY: number;
+      baseZ: number;
+      vx: number;
+      vy: number;
+      vz: number;
       phase: number;
       speed: number;
-      x: number;
-    };
+      amp: number;
+    }
 
-    const bars: Bar[] = [];
-    const barGroup = new THREE.Group();
-    barGroup.position.set(0, -2.4, -2.5);
-    scene.add(barGroup);
+    const particles: CosmicParticle[] = [];
+    const pointPositions = new Float32Array(POINT_COUNT * 3);
+    const pointColors = new Float32Array(POINT_COUNT * 3);
 
-    const barGeo = new THREE.BoxGeometry(BAR_WIDTH, 1, BAR_WIDTH);
-    barGeo.translate(0, 0.5, 0); // pivot at base so scale.y grows upward
+    const colCyan = new THREE.Color(0x06b6d4);
+    const colBlue = new THREE.Color(0x1d4ed8);
+    const colWhite = new THREE.Color(0xffffff);
 
-    const colorLow = new THREE.Color(0x0f2b5c); // electric deep blue
-    const colorHigh = new THREE.Color(0x06b6d4); // vibrant cyan
+    for (let i = 0; i < POINT_COUNT; i++) {
+      const x = (Math.random() - 0.5) * 22;
+      const y = (Math.random() - 0.5) * 14;
+      const z = (Math.random() - 0.5) * 8 - 1;
 
-    for (let i = 0; i < BAR_COUNT; i++) {
-      // Ascending growth trend across the row with realistic market wobble
-      const trend = 1.1 + (i / BAR_COUNT) * 2.6;
-      const baseHeight = trend + Math.sin(i * 0.9) * 0.35;
+      pointPositions[i * 3] = x;
+      pointPositions[i * 3 + 1] = y;
+      pointPositions[i * 3 + 2] = z;
 
-      const t = i / (BAR_COUNT - 1);
-      const color = colorLow.clone().lerp(colorHigh, t);
+      // Color variation: cyan, blue, focal white
+      const rand = Math.random();
+      const col = rand < 0.55 ? colCyan : rand < 0.85 ? colBlue : colWhite;
+      pointColors[i * 3] = col.r;
+      pointColors[i * 3 + 1] = col.g;
+      pointColors[i * 3 + 2] = col.b;
 
-      const mat = new THREE.MeshBasicMaterial({
-        color,
-        transparent: true,
-        opacity: 0.35,
-      });
-      const mesh = new THREE.Mesh(barGeo, mat);
-      const x = i * BAR_SPACING - totalWidth / 2;
-      mesh.position.x = x;
-      mesh.scale.y = baseHeight;
-      barGroup.add(mesh);
-
-      // Thin edge outline per bar for crisp terminal chart lines
-      const edges = new THREE.EdgesGeometry(barGeo);
-      const edgeMat = new THREE.LineBasicMaterial({
-        color: 0x38bdf8,
-        transparent: true,
-        opacity: 0.20,
-      });
-      const outline = new THREE.LineSegments(edges, edgeMat);
-      outline.scale.y = baseHeight;
-      outline.position.x = x;
-      barGroup.add(outline);
-
-      bars.push({
-        mesh,
-        baseHeight,
-        phase: Math.random() * Math.PI * 2,
-        speed: 0.30 + Math.random() * 0.35,
+      particles.push({
         x,
+        y,
+        z,
+        baseX: x,
+        baseY: y,
+        baseZ: z,
+        vx: (Math.random() - 0.5) * 0.003,
+        vy: (Math.random() - 0.5) * 0.003,
+        vz: (Math.random() - 0.5) * 0.002,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.25 + Math.random() * 0.45,
+        amp: 0.18 + Math.random() * 0.22,
       });
     }
 
-    // ---------- 2. INDEX LINE (glowing trend curve above the bars) ----------
-    const indexPoints: THREE.Vector3[] = bars.map(
-      (b) => new THREE.Vector3(b.x, b.baseHeight + 0.35, 0)
+    const pointsGeo = new THREE.BufferGeometry();
+    pointsGeo.setAttribute(
+      "position",
+      new THREE.BufferAttribute(pointPositions, 3)
     );
-    const indexGeo = new THREE.BufferGeometry().setFromPoints(indexPoints);
-    const indexMat = new THREE.LineBasicMaterial({
-      color: 0x22d3ee,
+    pointsGeo.setAttribute(
+      "color",
+      new THREE.BufferAttribute(pointColors, 3)
+    );
+
+    const isMobile = window.innerWidth < 768;
+    const pointsMat = new THREE.PointsMaterial({
+      size: isMobile ? 0.22 : 0.28,
+      map: dotTexture,
+      vertexColors: true,
       transparent: true,
-      opacity: 0.50,
+      opacity: 0.65,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
     });
-    const indexLine = new THREE.Line(indexGeo, indexMat);
-    barGroup.add(indexLine);
+    const pointsMesh = new THREE.Points(pointsGeo, pointsMat);
+    scene.add(pointsMesh);
 
-    // Soft duplicate underneath for glow-halo effect
-    const indexGlowMat = new THREE.LineBasicMaterial({
-      color: 0x2563eb,
+    // Hairline Connecting Lines
+    const linePositions = new Float32Array(MAX_LINES * 6);
+    const linesGeo = new THREE.BufferGeometry();
+    linesGeo.setAttribute(
+      "position",
+      new THREE.BufferAttribute(linePositions, 3)
+    );
+
+    const linesMat = new THREE.LineBasicMaterial({
+      color: 0x38bdf8,
       transparent: true,
-      opacity: 0.15,
+      opacity: 0.18, // Clean, non-intrusive hairline opacity (~0.15 - 0.25)
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
     });
-    const indexGlow = new THREE.Line(indexGeo.clone(), indexGlowMat);
-    indexGlow.position.y = -0.03;
-    barGroup.add(indexGlow);
+    const linesMesh = new THREE.LineSegments(linesGeo, linesMat);
+    scene.add(linesMesh);
 
-    // ---------- 3. MOMENTUM PULSE (traveling point along the index) ----------
-    const pulseGeo = new THREE.SphereGeometry(0.08, 16, 16);
-    const pulseMat = new THREE.MeshBasicMaterial({
-      color: 0xe0f2fe,
-      transparent: true,
-      opacity: 0.85,
-    });
-    const pulse = new THREE.Mesh(pulseGeo, pulseMat);
-    barGroup.add(pulse);
-
-    const pulseTrailGeo = new THREE.SphereGeometry(0.15, 12, 12);
-    const pulseTrailMat = new THREE.MeshBasicMaterial({
-      color: 0x06b6d4,
-      transparent: true,
-      opacity: 0.15,
-    });
-    const pulseTrail = new THREE.Mesh(pulseTrailGeo, pulseTrailMat);
-    barGroup.add(pulseTrail);
-
-    // ---------- 4. DEAL NODES (investment / marketing-channel markers) ----------
-    type DealNode = {
-      mesh: THREE.LineSegments;
-      link: THREE.Line;
-      angle: number;
-      radius: number;
-      height: number;
-      speed: number;
-      targetIndex: number;
-    };
-
-    const dealNodes: DealNode[] = [];
-    const nodeGroup = new THREE.Group();
-    scene.add(nodeGroup);
-
-    const icoGeo = new THREE.IcosahedronGeometry(0.28, 0);
-    const icoEdges = new THREE.EdgesGeometry(icoGeo);
-
-    const NODE_COUNT = 9;
-    for (let i = 0; i < NODE_COUNT; i++) {
-      const nodeMat = new THREE.LineBasicMaterial({
-        color: 0x22d3ee,
-        transparent: true,
-        opacity: 0.30,
-      });
-      const mesh = new THREE.LineSegments(icoEdges, nodeMat);
-
-      const linkMat = new THREE.LineBasicMaterial({
-        color: 0x2563eb,
-        transparent: true,
-        opacity: 0.10,
-      });
-      const linkGeo = new THREE.BufferGeometry().setFromPoints([
-        new THREE.Vector3(),
-        new THREE.Vector3(),
-      ]);
-      const link = new THREE.Line(linkGeo, linkMat);
-
-      nodeGroup.add(mesh);
-      nodeGroup.add(link);
-
-      dealNodes.push({
-        mesh,
-        link,
-        angle: (i / NODE_COUNT) * Math.PI * 2,
-        radius: 4.5 + Math.random() * 3.5,
-        height: 2.5 + Math.random() * 2.2,
-        speed: 0.05 + Math.random() * 0.04,
-        targetIndex: Math.floor((i / NODE_COUNT) * BAR_COUNT),
-      });
-    }
-
-    // ---------- Mouse dynamics (boardroom parallax tilt) ----------
+    // ---------- Mouse Parallax & Dynamic Reactivity ----------
     const pointer = { x: 0, y: 0 };
-    const targetCamOffset = { x: 0, y: 0 };
-    const currentCamOffset = { x: 0, y: 0 };
+    const mouse3D = new THREE.Vector3(0, 0, 0);
+    const targetCam = { x: 0, y: 0 };
+    const currentCam = { x: 0, y: 0 };
 
     function onPointerMove(e: PointerEvent) {
       pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
       pointer.y = (e.clientY / window.innerHeight) * 2 - 1;
-      targetCamOffset.x = pointer.x * 1.1;
-      targetCamOffset.y = -pointer.y * 0.5;
+
+      targetCam.x = pointer.x * 0.75;
+      targetCam.y = -pointer.y * 0.45;
+
+      // Approximate mouse position in world coordinates for particle reaction
+      mouse3D.set(pointer.x * 8.5, -pointer.y * 5.0, 0);
     }
     window.addEventListener("pointermove", onPointerMove, { passive: true });
 
-    // ---------- Resize handling ----------
+    // ---------- Window Resize Handling ----------
     function onResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const mobile = width < 768;
+
+      camera.aspect = width / height;
+      camera.position.z = mobile ? 12.5 : 10.0;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      pointsMat.size = mobile ? 0.22 : 0.28;
+
+      renderer.setSize(width, height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     }
     window.addEventListener("resize", onResize);
 
-    // ---------- Visibility handling (pause when tab hidden) ----------
+    // ---------- Visibility Handling (Pause offscreen) ----------
     let isVisible = true;
     function onVisibility() {
       isVisible = document.visibilityState === "visible";
     }
     document.addEventListener("visibilitychange", onVisibility);
 
-    // ---------- Animation loop ----------
+    // ---------- Animation Loop (60fps) ----------
     const clock = new THREE.Clock();
     let rafId = 0;
-    const linkPos = new Float32Array(6);
 
     function animate() {
       rafId = requestAnimationFrame(animate);
@@ -259,79 +277,84 @@ export default function Background3D() {
       const elapsed = clock.getElapsedTime();
       const speedMul = prefersReducedMotion ? 0 : 1;
 
-      // --- Animate growth bars: breathing heights around an upward trend ---
-      const indexPos = indexGeo.attributes.position as THREE.BufferAttribute;
-      const glowPos = indexGlow.geometry.attributes
-        .position as THREE.BufferAttribute;
+      // 1. Subtle Camera Parallax with Smooth Damping
+      currentCam.x += (targetCam.x - currentCam.x) * 0.04;
+      currentCam.y += (targetCam.y - currentCam.y) * 0.04;
+      camera.position.x = currentCam.x;
+      camera.position.y = currentCam.y;
+      camera.lookAt(0, 0, 0);
 
-      bars.forEach((b, i) => {
-        const wobble =
-          Math.sin(elapsed * b.speed + b.phase) * 0.28 * speedMul;
-        const h = Math.max(0.3, b.baseHeight + wobble);
-        b.mesh.scale.y = h;
-        // matching outline is the next child after the mesh (2 per bar)
-        const outline = barGroup.children[i * 2 + 1] as THREE.LineSegments;
-        outline.scale.y = h;
+      // 2. Slow Ambient Breathing of the Glow Orbs
+      const orbPulse = Math.sin(elapsed * 0.8) * 0.05;
+      blueOrb.scale.setScalar(1 + orbPulse);
+      cyanOrb.scale.setScalar(1 - orbPulse);
+      blueOrb.position.y = 3.5 + Math.sin(elapsed * 0.4) * 0.3;
+      cyanOrb.position.y = -3.2 + Math.cos(elapsed * 0.45) * 0.3;
 
-        indexPos.setXYZ(i, b.x, h + 0.35, 0);
-        glowPos.setXYZ(i, b.x, h + 0.35, 0);
-      });
-      indexPos.needsUpdate = true;
-      glowPos.needsUpdate = true;
+      // 3. Particle Drift & Mouse Proximity Interaction
+      const posAttr = pointsGeo.attributes.position as THREE.BufferAttribute;
+      const posArray = posAttr.array as Float32Array;
 
-      // --- Momentum pulse traveling along the index line ---
-      const cycle = 6; // seconds per full pass
-      const t = speedMul === 0 ? 0.5 : (elapsed % cycle) / cycle;
-      const floatIdx = t * (BAR_COUNT - 1);
-      const i0 = Math.floor(floatIdx);
-      const i1 = Math.min(i0 + 1, BAR_COUNT - 1);
-      const frac = floatIdx - i0;
-      const p0 = new THREE.Vector3(
-        indexPos.getX(i0),
-        indexPos.getY(i0),
-        indexPos.getZ(i0)
-      );
-      const p1 = new THREE.Vector3(
-        indexPos.getX(i1),
-        indexPos.getY(i1),
-        indexPos.getZ(i1)
-      );
-      const pulsePos = p0.lerp(p1, frac);
-      pulse.position.copy(pulsePos);
-      pulseTrail.position.copy(pulsePos);
-      const pulseScale = 1 + Math.sin(elapsed * 4) * 0.15;
-      pulseTrail.scale.setScalar(pulseScale);
+      for (let i = 0; i < POINT_COUNT; i++) {
+        const p = particles[i];
 
-      // --- Deal nodes: slow orbit above the index, linked by signal threads ---
-      dealNodes.forEach((n) => {
-        n.angle += n.speed * 0.01 * speedMul;
-        const x = Math.cos(n.angle) * n.radius;
-        const z = Math.sin(n.angle) * n.radius - 2.5;
-        const y = n.height + Math.sin(elapsed * 0.5 + n.angle) * 0.3;
-        n.mesh.position.set(x, y, z);
-        n.mesh.rotation.x += 0.003 * speedMul;
-        n.mesh.rotation.y += 0.004 * speedMul;
+        // Harmonic drift
+        p.x = p.baseX + Math.sin(elapsed * p.speed + p.phase) * p.amp * speedMul;
+        p.y = p.baseY + Math.cos(elapsed * (p.speed * 0.8) + p.phase) * p.amp * speedMul;
+        p.z = p.baseZ + Math.sin(elapsed * 0.3 + p.phase) * (p.amp * 0.5) * speedMul;
 
-        // link line to its target bar tip on the index
-        const targetX = indexPos.getX(n.targetIndex);
-        const targetY = indexPos.getY(n.targetIndex);
-        linkPos[0] = x;
-        linkPos[1] = y;
-        linkPos[2] = z;
-        linkPos[3] = targetX;
-        linkPos[4] = targetY;
-        linkPos[5] = 0;
-        const linkAttr = n.link.geometry.attributes.position as THREE.BufferAttribute;
-        linkAttr.copyArray(linkPos);
-        linkAttr.needsUpdate = true;
-      });
+        // Subtle mouse push/repulsion
+        const dx = p.x - mouse3D.x;
+        const dy = p.y - mouse3D.y;
+        const distToMouse = Math.sqrt(dx * dx + dy * dy);
 
-      // --- Mouse-reactive boardroom camera tilt ---
-      currentCamOffset.x += (targetCamOffset.x - currentCamOffset.x) * 0.035;
-      currentCamOffset.y += (targetCamOffset.y - currentCamOffset.y) * 0.035;
-      camera.position.x = currentCamOffset.x * 1.6;
-      camera.position.y = 2.6 + currentCamOffset.y * 0.9;
-      camera.lookAt(currentCamOffset.x * -0.5, 0.6, -2);
+        if (distToMouse < 3.2) {
+          const force = (1 - distToMouse / 3.2) * 0.45 * speedMul;
+          p.x += (dx / (distToMouse || 1)) * force;
+          p.y += (dy / (distToMouse || 1)) * force;
+        }
+
+        posArray[i * 3] = p.x;
+        posArray[i * 3 + 1] = p.y;
+        posArray[i * 3 + 2] = p.z;
+      }
+      posAttr.needsUpdate = true;
+
+      // 4. Update Dynamic Interconnecting Constellation Lines
+      const linePosAttr = linesGeo.attributes.position as THREE.BufferAttribute;
+      const linePosArray = linePosAttr.array as Float32Array;
+      let lineIdx = 0;
+
+      for (let i = 0; i < POINT_COUNT && lineIdx < MAX_LINES; i++) {
+        const p1 = particles[i];
+
+        for (let j = i + 1; j < POINT_COUNT && lineIdx < MAX_LINES; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dz = p1.z - p2.z;
+          const dSq = dx * dx + dy * dy + dz * dz;
+
+          if (dSq < CONNECT_DIST * CONNECT_DIST) {
+            const baseIdx = lineIdx * 6;
+            linePosArray[baseIdx] = p1.x;
+            linePosArray[baseIdx + 1] = p1.y;
+            linePosArray[baseIdx + 2] = p1.z;
+            linePosArray[baseIdx + 3] = p2.x;
+            linePosArray[baseIdx + 4] = p2.y;
+            linePosArray[baseIdx + 5] = p2.z;
+            lineIdx++;
+          }
+        }
+      }
+
+      // Zero out unused line segments
+      for (let k = lineIdx * 6; k < MAX_LINES * 6; k++) {
+        linePosArray[k] = 0;
+      }
+
+      linePosAttr.needsUpdate = true;
+      linesGeo.setDrawRange(0, lineIdx * 2);
 
       renderer.render(scene, camera);
     }
@@ -343,24 +366,20 @@ export default function Background3D() {
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("resize", onResize);
       document.removeEventListener("visibilitychange", onVisibility);
+
       renderer.dispose();
-      barGeo.dispose();
-      icoGeo.dispose();
-      icoEdges.dispose();
-      pulseGeo.dispose();
-      pulseTrailGeo.dispose();
-      indexGeo.dispose();
-      indexGlow.geometry.dispose();
-      bars.forEach((b) => (b.mesh.material as THREE.Material).dispose());
-      dealNodes.forEach((n) => {
-        (n.mesh.material as THREE.Material).dispose();
-        n.link.geometry.dispose();
-        (n.link.material as THREE.Material).dispose();
-      });
-      indexMat.dispose();
-      indexGlowMat.dispose();
-      pulseMat.dispose();
-      pulseTrailMat.dispose();
+      blueOrbGeo.dispose();
+      blueOrbMat.dispose();
+      cyanOrbGeo.dispose();
+      cyanOrbMat.dispose();
+      pointsGeo.dispose();
+      pointsMat.dispose();
+      linesGeo.dispose();
+      linesMat.dispose();
+      dotTexture.dispose();
+      blueOrbTexture.dispose();
+      cyanOrbTexture.dispose();
+
       if (mount.contains(renderer.domElement)) {
         mount.removeChild(renderer.domElement);
       }
