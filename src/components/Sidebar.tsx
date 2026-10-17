@@ -224,6 +224,13 @@ export default function Sidebar() {
           <li className="flex gap-3">
             <Briefcase size={16} className="text-gray-400 dark:text-gray-500 mt-1 flex-shrink-0" />
             <div>
+              <p className="text-sm font-bold text-gray-800 dark:text-gray-200">Founder & Marketing Strategist</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Maglyn (2026 - Present)</p>
+            </div>
+          </li>
+          <li className="flex gap-3">
+            <Briefcase size={16} className="text-gray-400 dark:text-gray-500 mt-1 flex-shrink-0" />
+            <div>
               <p className="text-sm font-bold text-gray-800 dark:text-gray-200">Sales Growth Business Partner</p>
               <p className="text-xs text-gray-500 dark:text-gray-400">Flowmingo AI (Jun 2026 - Present)</p>
             </div>

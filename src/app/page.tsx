@@ -282,7 +282,7 @@ export default function Home() {
           </div>
           <div className="space-y-4">
             {[
-              { role: "Founder & Marketing Strategist", org: "Maglyn", date: "2024 - Present", desc: "Founded and scaled a personalized keepsake magazine brand. Directing end-to-end brand positioning, product design, direct-to-consumer digital marketing, and sustainable revenue operations.", icon: <Rocket className="text-cyan-400" size={18} /> },
+              { role: "Founder & Marketing Strategist", org: "Maglyn", date: "2026 - Present", desc: "Founded and scaled a personalized keepsake magazine brand. Directing end-to-end brand positioning, product design, direct-to-consumer digital marketing, and sustainable revenue operations.", icon: <Rocket className="text-cyan-400" size={18} /> },
               { role: "Sales Growth Business Partner", org: "Flowmingo AI", date: "Jun 2026 - Present", desc: "Driving adoption of AI-native interview platforms and sales growth strategies across regions.", icon: <Rocket className="text-cyan-400" size={18} /> },
               { role: "Social Media & Marketing Intern", org: "Elevetr AI", date: "Jun 2026 - Dec 2026", desc: "Managing user growth strategies, digital marketing campaigns, and community engagement.", icon: <TrendingUp className="text-blue-400" size={18} /> },
               { role: "Core Campus Ambassador Manager", org: "10 Minute School", date: "Aug 2022 - Present", desc: "Managed ambassador networks nationwide, driving student acquisition and product awareness.", icon: <Users className="text-cyan-400" size={18} /> },
@@ -365,7 +365,7 @@ export default function Home() {
             <div className="glass-panel border-2 border-cyan-500/40 p-8 rounded-3xl shadow-xl relative overflow-hidden flex flex-col justify-between group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
               <div className="space-y-4">
-                <span className="text-[10px] font-mono uppercase tracking-widest bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 px-3 py-1 rounded-full inline-block">My Startup</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 px-3 py-1 rounded-full inline-block">My Startup • 2026 – Present</span>
                 <h3 className="text-2xl font-sans font-extrabold text-white">Maglyn</h3>
                 <p className="text-sm text-slate-300 leading-relaxed font-light">
                   A personalized magazine-printing brand that transforms your favorite photos, memories, and stories into beautifully designed physical magazines for special moments.
