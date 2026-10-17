@@ -232,7 +232,7 @@ export default function VoiceOfBusinessClient() {
 
               <div className="pt-3 border-t border-white/10">
                 <span className="text-xs font-semibold tracking-wider text-slate-400 uppercase">Deliverables & Impact</span>
-                <h3 className="text-lg font-bold text-white mt-1">25+ Production Creatives</h3>
+                <h3 className="text-lg font-bold text-white mt-1">27 Production Creatives</h3>
                 <p className="text-sm text-emerald-400 font-medium">Complete Design & Delivery Execution</p>
               </div>
 

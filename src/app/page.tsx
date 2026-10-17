@@ -439,7 +439,7 @@ export default function Home() {
                       </div>
                       {item.link && (
                         <Link href={item.link} className="text-[10px] font-mono text-cyan-400 hover:text-cyan-300 underline decoration-cyan-500/50">
-                          View 25+ Assets ↗
+                          View 27 Assets ↗
                         </Link>
                       )}
                     </div>

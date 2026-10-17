@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Voice of Business — Complete Visual Identity & Campaign Design',
     description:
-      'Voice of Business (VOB) is BUBT Business Club’s flagship campus platform dedicated to public speaking, anchoring, and corporate communication—transforming classroom intellect into real-world professional confidence and career readiness aligned with global SDGs. Complete visual identity and 25+ production creatives designed by Faysal Ibne Safir Shanto.',
+      'Voice of Business (VOB) is BUBT Business Club’s flagship campus platform dedicated to public speaking, anchoring, and corporate communication—transforming classroom intellect into real-world professional confidence and career readiness aligned with global SDGs. Complete visual identity and 27 production creatives designed by Faysal Ibne Safir Shanto.',
     url: 'https://faysalshanto.vercel.app/voice-of-business',
     siteName: 'Faysal Ibne Safir Shanto Portfolio',
     images: [
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Voice of Business — Complete Visual Identity & Campaign Design',
     description:
-      '25+ production assets including stage backdrops, posters, standees, and digital campaigns designed by Faysal Ibne Safir Shanto.',
+      '27 production assets including stage backdrops, posters, standees, and digital campaigns designed by Faysal Ibne Safir Shanto.',
     images: ['/voice-of-business/Grand Finale.png'],
   },
 };
