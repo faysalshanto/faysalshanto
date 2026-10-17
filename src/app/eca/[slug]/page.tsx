@@ -96,8 +96,17 @@ export default async function EcaDetailPage({ params }: { params: Promise<{ slug
       <Newsletter />
 
       {/* Footer */}
-      <footer className="relative z-10 bg-[#03050a] border-t border-gray-800/80 py-8 text-center text-sm text-gray-500">
+      <footer className="relative z-10 bg-[#03050a] border-t border-gray-800/80 py-8 text-center text-sm text-gray-500 space-y-2">
         <p>© 2026 Faysal Ibne Safir Shanto. All Rights Reserved.</p>
+        <div className="flex justify-center items-center gap-4 text-xs text-gray-400">
+          <a href="https://www.linkedin.com/in/faysal-ibne-safir-shanto/" target="_blank" rel="noreferrer" className="hover:text-blue-400 transition">LinkedIn</a>
+          <span>•</span>
+          <a href="https://medium.com/@faysalshanto/bangladeshs-next-economic-opportunity-is-hiding-in-its-problems-f365d31768db" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition">Medium</a>
+          <span>•</span>
+          <a href="https://github.com/faysalshanto" target="_blank" rel="noreferrer" className="hover:text-white transition">GitHub</a>
+          <span>•</span>
+          <a href="https://www.facebook.com/faysal.ibne.safir.shanto" target="_blank" rel="noreferrer" className="hover:text-blue-400 transition">Facebook</a>
+        </div>
       </footer>
     </div>
   );

@@ -86,6 +86,7 @@ const personSchema = {
     name: "Bangladesh University of Business and Technology (BUBT)",
   },
   sameAs: [
+    "https://www.linkedin.com/in/faysal-ibne-safir-shanto/",
     "https://www.facebook.com/faysal.ibne.safir.shanto",
     "https://www.instagram.com/faysal.shanto",
     "https://faysalshanto.vercel.app",

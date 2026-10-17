@@ -5,7 +5,8 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Newsletter from '@/components/Newsletter';
 import SceneCanvas from '@/components/SceneCanvas';
-import { ArrowLeft, Calendar, Tag, Share2, Sparkles, CheckCircle2, Lightbulb, Rocket, Target, ShieldCheck, TrendingUp, Globe, BookOpen, Layers } from 'lucide-react';
+import { blogPosts } from '@/data/blog';
+import { ArrowLeft, Calendar, Tag, Share2, Sparkles, CheckCircle2, Lightbulb, Rocket, Target, ShieldCheck, TrendingUp, Globe, BookOpen, Layers, ExternalLink } from 'lucide-react';
 
 interface FrameworkStep {
   step: number;
@@ -22,6 +23,7 @@ interface SectorHighlight {
 export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = React.use(params);
   const slug = resolvedParams.slug;
+  const currentPost = blogPosts.find((p) => p.slug === slug) || blogPosts[0];
 
   const frameworkSteps: FrameworkStep[] = [
     { step: 1, title: "Identify the Real Problem", desc: "Look for daily operational friction, fragmentation, or informal workarounds rather than just 'building an app'." },
@@ -73,30 +75,62 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
       {/* Article Container */}
       <main className="relative z-10 max-w-4xl mx-auto px-6 pt-28 pb-12 space-y-10">
         
-        {/* Back Link */}
-        <div className="flex justify-between items-center">
+        {/* Back Link & Action Bar */}
+        <div className="flex flex-wrap justify-between items-center gap-3">
           <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-blue-300 transition">
             <ArrowLeft size={16} /> Back to Blog
           </Link>
-          <span className="text-xs font-mono text-gray-400 bg-gray-900/90 border border-gray-800 px-3 py-1 rounded-full">
-            6 Min Read
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-mono text-gray-400 bg-gray-900/90 border border-gray-800 px-3 py-1.5 rounded-full">
+              {currentPost.readTime}
+            </span>
+            {currentPost.mediumUrl && (
+              <a
+                href={currentPost.mediumUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-400 hover:text-emerald-300 border border-emerald-500/40 text-xs font-bold uppercase tracking-wider transition shadow-[0_0_15px_rgba(16,185,129,0.25)] hover:scale-102"
+              >
+                <span>Read on Medium ↗</span>
+              </a>
+            )}
+          </div>
         </div>
 
         {/* Article Header */}
         <header className="space-y-6 pt-2 border-b border-gray-800/80 pb-8">
           <div className="flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-wider">
             <span className="text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full flex items-center gap-1.5">
-              <Rocket size={13} /> Startups & Innovation
+              <Rocket size={13} /> {currentPost.category}
             </span>
             <span className="text-gray-400 font-mono flex items-center gap-1.5">
-              <Calendar size={13} /> August 26, 2026
+              <Calendar size={13} /> {currentPost.date}
             </span>
           </div>
 
           <h1 className="text-3xl md:text-5xl font-extrabold text-white leading-tight">
-            Bangladesh's Next Economic Opportunity Is Hiding in Its Problems
+            {currentPost.title}
           </h1>
+
+          {/* Medium Callout Banner */}
+          {currentPost.mediumUrl && (
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-[#0d1322] to-blue-950/40 border border-emerald-500/30">
+              <div className="flex items-center gap-3">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399] flex-shrink-0"></span>
+                <p className="text-xs text-slate-300">
+                  Published originally on <strong className="text-white font-medium">Medium</strong>. Read the complete story with full community discussions and clap support.
+                </p>
+              </div>
+              <a
+                href={currentPost.mediumUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-extrabold text-xs uppercase tracking-wider transition shadow-[0_0_15px_rgba(16,185,129,0.35)] whitespace-nowrap hover:scale-102 cursor-pointer"
+              >
+                <span>Read on Medium ↗</span>
+              </a>
+            </div>
+          )}
 
           <div className="bg-[#0d1322]/90 backdrop-blur-sm border-l-4 border-blue-500 p-5 rounded-r-2xl border-y border-r border-gray-800/80">
             <p className="text-gray-300 text-base md:text-lg leading-relaxed italic">
@@ -255,9 +289,15 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             <p className="text-xs text-gray-400 leading-relaxed">
               Digital Marketer, Startup Founder & Student Leader. Founder at Maglyn, Sales Growth Partner at Flowmingo AI, and BBA Student at BUBT.
             </p>
-            <div className="flex gap-4 pt-1 justify-center sm:justify-start text-xs text-blue-400 font-medium">
+            <div className="flex flex-wrap gap-4 pt-1 justify-center sm:justify-start text-xs text-blue-400 font-medium">
               <a href="https://www.linkedin.com/in/faysal-ibne-safir-shanto/" target="_blank" rel="noreferrer" className="hover:underline">LinkedIn</a>
               <span>•</span>
+              {currentPost.mediumUrl && (
+                <>
+                  <a href={currentPost.mediumUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">Read on Medium ↗</a>
+                  <span>•</span>
+                </>
+              )}
               <a href="https://github.com/faysalshanto" target="_blank" rel="noreferrer" className="hover:underline">GitHub</a>
               <span>•</span>
               <a href="https://www.facebook.com/faysal.ibne.safir.shanto" target="_blank" rel="noreferrer" className="hover:underline">Facebook</a>
@@ -271,8 +311,15 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
       <Newsletter />
 
       {/* Footer */}
-      <footer className="relative z-10 bg-[#03050a] border-t border-gray-800/80 py-8 text-center text-sm text-gray-500">
+      <footer className="relative z-10 bg-[#03050a] border-t border-gray-800/80 py-8 text-center text-sm text-gray-500 space-y-2">
         <p>© 2026 Faysal Ibne Safir Shanto. All Rights Reserved.</p>
+        <div className="flex justify-center items-center gap-4 text-xs text-gray-400">
+          <a href="https://www.linkedin.com/in/faysal-ibne-safir-shanto/" target="_blank" rel="noreferrer" className="hover:text-blue-400 transition">LinkedIn</a>
+          <span>•</span>
+          <a href="https://medium.com/@faysalshanto/bangladeshs-next-economic-opportunity-is-hiding-in-its-problems-f365d31768db" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition">Medium</a>
+          <span>•</span>
+          <a href="https://github.com/faysalshanto" target="_blank" rel="noreferrer" className="hover:text-white transition">GitHub</a>
+        </div>
       </footer>
     </div>
   );

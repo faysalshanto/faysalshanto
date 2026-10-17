@@ -8,19 +8,10 @@ import SceneCanvas from '@/components/SceneCanvas';
 import { ContactForm } from '@/components/ContactForm';
 import EcaShowcase from '@/components/EcaShowcase';
 import VolunteeringLeadership from '@/components/VolunteeringLeadership';
+import { blogPosts } from '@/data/blog';
 import { Briefcase, Award, ExternalLink, MapPin, TrendingUp, Users, Calendar, Megaphone, ShieldCheck, HeartHandshake, Crown, Palette, Globe, Rocket, Terminal, Flag, CheckCircle2, Image as ImageIcon, ArrowUp, ArrowRight, Layers } from 'lucide-react';
 
 export default function Home() {
-  const posts = [
-    {
-      id: 1,
-      title: "Bangladesh's Next Economic Opportunity Is Hiding in Its Problems",
-      date: "August 26, 2026",
-      excerpt: "Why startups, innovation, and digital platforms could turn Bangladesh's everyday problems into global businesses.",
-      category: "Startups",
-      slug: "bangladesh-next-economic-opportunity"
-    }
-  ];
 
   const scrollToTop = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -291,6 +282,7 @@ export default function Home() {
           </div>
           <div className="space-y-4">
             {[
+              { role: "Founder & Marketing Strategist", org: "Maglyn", date: "2024 - Present", desc: "Founded and scaled a personalized keepsake magazine brand. Directing end-to-end brand positioning, product design, direct-to-consumer digital marketing, and sustainable revenue operations.", icon: <Rocket className="text-cyan-400" size={18} /> },
               { role: "Sales Growth Business Partner", org: "Flowmingo AI", date: "Jun 2026 - Present", desc: "Driving adoption of AI-native interview platforms and sales growth strategies across regions.", icon: <Rocket className="text-cyan-400" size={18} /> },
               { role: "Social Media & Marketing Intern", org: "Elevetr AI", date: "Jun 2026 - Dec 2026", desc: "Managing user growth strategies, digital marketing campaigns, and community engagement.", icon: <TrendingUp className="text-blue-400" size={18} /> },
               { role: "Core Campus Ambassador Manager", org: "10 Minute School", date: "Aug 2022 - Present", desc: "Managed ambassador networks nationwide, driving student acquisition and product awareness.", icon: <Users className="text-cyan-400" size={18} /> },
@@ -321,14 +313,18 @@ export default function Home() {
               <h2 className="text-2xl font-sans font-extrabold text-white mb-2">Leadership & Activities</h2>
               <div className="w-[25%] h-0.5 bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto rounded-full shadow-[0_0_10px_#22d3ee]"></div>
             </div>
+            <p className="text-xs font-mono tracking-widest text-cyan-400 uppercase mt-2">
+              Student Leader, Brand Identity Designer & Digital Marketer
+            </p>
           </div>
           <div className="space-y-4">
             {[
+              { role: "Media & Publication Secretary", org: "BUBT Business Club (BUBTBC)", date: "2026 – Present", desc: "Lead Visual Strategist & Brand Identity Designer. Directing the complete end-to-end visual identity, stage branding, digital promotional campaigns, and high-format print collaterals for campus competitions and initiatives like Voice of Business.", icon: <Palette className="text-cyan-400" size={18} /> },
               { role: "Executive Member", org: "AI Community BUBT", date: "2025 – Present", desc: "Involved in BAIC 2025, AI-focused workshops, competitions, and community activities. Worked as part of the organizing team and was also a member of Team Elite, the Champion of the Pitch Battle.", icon: <Globe className="text-blue-400" size={18} /> },
               { role: "Executive", org: "Hult Prize at BUBT", date: "2025 – 2026", desc: "Involved in Hult Prize 2025–26, including entrepreneurship programs, team activities, campus events, and various program execution activities.", icon: <Crown className="text-cyan-400" size={18} /> },
               { role: "Treasurer", org: "Leo Club of Dhaka Century Plus", date: "2026 – Present", desc: "Currently involved in various community service, awareness, and social welfare initiatives, including a Women’s Reproductive Health & Infertility Awareness Seminar.", icon: <HeartHandshake className="text-blue-400" size={18} /> },
               { role: "Crew Facilitator", org: "Space Innovation Camp", date: "2026 – Present", desc: "Currently working as a Crew Facilitator at Space Innovation Camp, involved in participant management, crew coordination, activity facilitation, and overall event execution.", icon: <Globe className="text-cyan-400" size={18} /> },
-              { role: "Cadet Sergeant", org: "Bangladesh National Cadet Corps (BNCC)", date: "2023 – 2024", desc: "Served during 2023–2024, participating in regular military-style training, drills, leadership activities, discipline development, and team-based cadet programs.", icon: <Flag className="text-cyan-400" size={18} /> }
+              { role: "Cadet Sergeant & Drill 2IC", org: "Bangladesh National Cadet Corps (BNCC)", date: "2023 – 2024", desc: "Served during 2023–2024, participating in regular military-style training, drills, leadership activities, discipline development, and team-based cadet programs.", icon: <Flag className="text-cyan-400" size={18} /> }
             ].map((lead, i) => (
               <div key={i} className="glass-panel glow-border p-6 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition">
                 <div className="flex items-start gap-4 flex-1">
@@ -501,13 +497,34 @@ export default function Home() {
             <Link href="/blog" className="text-xs font-mono uppercase tracking-wider text-cyan-400 hover:underline">View All Posts →</Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {posts.map((post) => (
-              <Link href={`/blog/${post.slug}`} key={post.id} className="glass-panel glow-border p-6 rounded-2xl hover:border-cyan-400 transition group">
-                <p className="text-xs text-cyan-400 font-mono uppercase mb-2">{post.date} • {post.category}</p>
-                <h3 className="text-xl font-sans font-bold text-white mb-3 group-hover:text-cyan-400 transition">{post.title}</h3>
-                <p className="text-sm text-slate-300 mb-4 line-clamp-2 font-light">{post.excerpt}</p>
-                <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 group-hover:underline">Read Article »</span>
-              </Link>
+            {blogPosts.map((post) => (
+              <div key={post.id} className="glass-panel glow-border p-6 rounded-2xl hover:border-cyan-400 transition group flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between text-xs font-mono mb-2">
+                    <span className="text-cyan-400 uppercase">{post.date} • {post.category}</span>
+                    <span className="text-slate-400">{post.readTime}</span>
+                  </div>
+                  <h3 className="text-xl font-sans font-bold text-white mb-3 group-hover:text-cyan-400 transition">
+                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                  </h3>
+                  <p className="text-sm text-slate-300 mb-4 line-clamp-2 font-light">{post.excerpt}</p>
+                </div>
+                <div className="flex flex-wrap items-center justify-between pt-4 border-t border-slate-800/80 gap-3">
+                  <Link href={`/blog/${post.slug}`} className="text-xs font-mono uppercase tracking-wider text-cyan-400 hover:underline inline-flex items-center gap-1 font-bold">
+                    Read Article »
+                  </Link>
+                  {post.mediumUrl && (
+                    <a
+                      href={post.mediumUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold uppercase tracking-wider transition shadow-sm hover:scale-102"
+                    >
+                      <span>Read on Medium ↗</span>
+                    </a>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         </section>
@@ -536,6 +553,17 @@ export default function Home() {
                   Bangladesh University of Business and Technology (BUBT), Rupnagar, Mirpur-2, Dhaka-1216.
                 </p>
                 <p className="text-xs text-cyan-400 font-mono">Email: faysal.shanto.official@gmail.com</p>
+                <p className="text-xs text-slate-300 font-mono flex items-center gap-2">
+                  <span className="text-cyan-400">LinkedIn:</span>
+                  <a
+                    href="https://www.linkedin.com/in/faysal-ibne-safir-shanto/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-cyan-400 hover:underline"
+                  >
+                    linkedin.com/in/faysal-ibne-safir-shanto
+                  </a>
+                </p>
               </div>
 
               <div className="relative w-full h-[300px] rounded-xl overflow-hidden border border-slate-800 shadow-lg">
@@ -562,8 +590,17 @@ export default function Home() {
         <ArrowUp size={18} className="group-hover:-translate-y-0.5 transition-transform" />
       </button>
 
-      <footer className="relative z-10 bg-[#07090e] border-t border-slate-800/80 py-8 text-center text-xs font-mono text-slate-400 mt-20">
+      <footer className="relative z-10 bg-[#07090e] border-t border-slate-800/80 py-8 text-center text-xs font-mono text-slate-400 mt-20 space-y-2">
         <p>© 2026 Faysal Ibne Safir Shanto. All Rights Reserved.</p>
+        <div className="flex justify-center items-center gap-4 text-xs text-slate-400">
+          <a href="https://www.linkedin.com/in/faysal-ibne-safir-shanto/" target="_blank" rel="noreferrer" className="hover:text-cyan-400 transition">LinkedIn</a>
+          <span>•</span>
+          <a href="https://medium.com/@faysalshanto/bangladeshs-next-economic-opportunity-is-hiding-in-its-problems-f365d31768db" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition">Medium</a>
+          <span>•</span>
+          <a href="https://github.com/faysalshanto" target="_blank" rel="noreferrer" className="hover:text-white transition">GitHub</a>
+          <span>•</span>
+          <a href="https://www.facebook.com/faysal.ibne.safir.shanto" target="_blank" rel="noreferrer" className="hover:text-cyan-400 transition">Facebook</a>
+        </div>
       </footer>
     </div>
   );
